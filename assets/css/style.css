@@ -19,7 +19,7 @@
       --text-3:      #849585;
       --mono:        'JetBrains Mono', monospace;
       --sans:        'Inter', sans-serif;
-      --display:     'Syne', sans-serif;
+      --display:     'Plus Jakarta Sans', sans-serif;
       --radius:      4px;
       --radius-lg:   8px;
       --transition:  0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -59,7 +59,7 @@
       font-size: clamp(32px, 5vw, 48px);
       font-weight: 800;
       line-height: 1.1;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.015em;
       color: var(--text-1);
     }
     .section-sub {

@@ -437,16 +437,21 @@
       background: linear-gradient(90deg, #ff4444, transparent);
     }
     .pain-icon {
-      width: 40px;
-      height: 40px;
-      background: rgba(255,68,68,0.1);
-      border: 1px solid rgba(255,68,68,0.2);
-      border-radius: 8px;
+      width: 44px;
+      height: 44px;
+      background: rgba(255,68,68,0.08);
+      border: 1px solid rgba(255,68,68,0.15);
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 16px;
-      font-size: 18px;
+      margin-bottom: 20px;
+      color: #ff5555;
+    }
+    .pain-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.2px;
     }
     .pain-title {
       font-family: var(--display);
@@ -497,16 +502,21 @@
       box-shadow: 0 12px 32px rgba(0,0,0,0.3);
     }
     .sol-icon {
-      width: 40px;
-      height: 40px;
+      width: 44px;
+      height: 44px;
       background: var(--green-dim);
-      border: 1px solid rgba(0,232,122,0.2);
-      border-radius: 8px;
+      border: 1px solid rgba(0,232,122,0.15);
+      border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 16px;
-      font-size: 18px;
+      margin-bottom: 20px;
+      color: var(--green);
+    }
+    .sol-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2.2px;
     }
     .sol-title {
       font-family: var(--display);

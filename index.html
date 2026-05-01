@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Automatización de procesos y desarrollo web a medida. Soluciones que reducen errores, ahorran tiempo y escalan tu negocio." />
+  <meta name="keywords" content="automatización de procesos, desarrollo web a medida, software empresarial, integración de sistemas, dashboards, digitalización" />
+  <meta property="og:title" content="Soluciones de software que sí generan resultados" />
+  <meta property="og:description" content="Automatiza procesos, reduce errores y ahorra tiempo con desarrollo web a medida." />
+  <meta property="og:type" content="website" />
+  <title>Dev a Medida · Automatización &amp; Software Empresarial</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Reset & Variables ───────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #080b0f;
+      --bg-2:        #0d1117;
+      --bg-3:        #111820;
+      --surface:     #141c26;
+      --surface-2:   #1a2433;
+      --border:      rgba(255,255,255,0.06);
+      --border-2:    rgba(255,255,255,0.10);
+      --green:       #00e87a;
+      --green-dim:   rgba(0,232,122,0.12);
+      --green-glow:  rgba(0,232,122,0.20);
+      --cyan:        #22d3ee;
+      --cyan-dim:    rgba(34,211,238,0.10);
+      --text-1:      #f0f4f8;
+      --text-2:      #8b9ab0;
+      --text-3:      #4a5568;
+      --mono:        'JetBrains Mono', monospace;
+      --sans:        'DM Sans', sans-serif;
+      --display:     'Syne', sans-serif;
+      --radius:      10px;
+      --radius-lg:   18px;
+      --transition:  0.22s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-1);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Utility ─────────────────────────────────────────────── */
+    .container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+    .mono      { font-family: var(--mono); }
+    .tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+      border: 1px solid var(--border-2);
+      color: var(--green);
+      background: var(--green-dim);
+      margin-bottom: 20px;
+    }
+    .section-title {
+      font-family: var(--display);
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text-1);
+    }
+    .section-sub {
+      color: var(--text-2);
+      font-size: 17px;
+      margin-top: 12px;
+      max-width: 560px;
+    }
+    section { padding: 96px 0; }
+    .divider { height: 1px; background: var(--border); margin: 0; }
+
+    /* ─── Buttons ─────────────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 24px;
+      border-radius: var(--radius);
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 500;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--green);
+      color: #060a0d;
+      font-weight: 600;
+    }
+    .btn-primary:hover { background: #1fffa0; transform: translateY(-1px); box-shadow: 0 8px 28px var(--green-glow); }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-2);
+      border: 1px solid var(--border-2);
+    }
+    .btn-secondary:hover { color: var(--text-1); border-color: rgba(255,255,255,0.2); background: var(--surface); }
+    .btn-icon { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ─── Nav ─────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(8,11,15,0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-1);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--green); }
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px;
+      color: var(--text-2);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: var(--transition);
+    }
+    .nav-links a:hover { color: var(--text-1); background: var(--surface); }
+    .nav-cta { display: flex; align-items: center; }
+    .nav-cta .btn { padding: 9px 18px; font-size: 14px; }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+    }
+
+    /* ─── Hero ────────────────────────────────────────────────── */
+    #hero {
+      padding: 140px 0 96px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 70% at 50% 0%, black 40%, transparent 100%);
+    }
+    .hero-glow {
+      position: absolute;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, rgba(0,232,122,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--green);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 1px;
+      background: var(--green);
+    }
+    .hero-headline {
+      font-family: var(--display);
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text-1);
+      margin-bottom: 20px;
+    }
+    .hero-headline em {
+      font-style: normal;
+      color: var(--green);
+      position: relative;
+    }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--text-2);
+      line-height: 1.65;
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero-social-proof {
+      margin-top: 48px;
+      padding-top: 28px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .proof-item { display: flex; flex-direction: column; gap: 2px; }
+    .proof-num {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-1);
+    }
+    .proof-label { font-size: 13px; color: var(--text-3); }
+
+    /* ─── Dashboard Mockup ────────────────────────────────────── */
+    .dashboard-wrap {
+      position: relative;
+    }
+    .dashboard-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -20px;
+      background: radial-gradient(ellipse at center, rgba(0,232,122,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .dashboard {
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,232,122,0.06);
+      position: relative;
+    }
+    .dash-header {
+      background: var(--surface-2);
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #febc2e; }
+    .dot-g { background: #28c840; }
+    .dash-tab {
+      margin-left: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+      background: var(--surface);
+      padding: 4px 12px;
+      border-radius: 4px;
+    }
+    .dash-body { padding: 20px; }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .kpi {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+    }
+    .kpi-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 4px;
+    }
+    .kpi-value {
+      font-family: var(--display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-1);
+    }
+    .kpi-delta {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--green);
+      margin-top: 2px;
+    }
+    .chart-area {
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 10px;
+    }
+    .chart-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 12px;
+    }
+    .chart-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 64px;
+    }
+    .bar {
+      flex: 1;
+      border-radius: 3px 3px 0 0;
+      background: var(--surface-2);
+      transition: var(--transition);
+      animation: barGrow 1s ease forwards;
+      transform-origin: bottom;
+    }
+    .bar.active { background: linear-gradient(to top, var(--green) 0%, rgba(0,232,122,0.4) 100%); }
+    @keyframes barGrow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+    .bar:nth-child(1) { height: 40%; animation-delay: 0.05s; }
+    .bar:nth-child(2) { height: 65%; animation-delay: 0.1s; }
+    .bar:nth-child(3) { height: 50%; animation-delay: 0.15s; }
+    .bar:nth-child(4) { height: 80%; animation-delay: 0.2s; }
+    .bar:nth-child(5) { height: 60%; animation-delay: 0.25s; }
+    .bar:nth-child(6) { height: 90%; animation-delay: 0.3s; }
+    .bar:nth-child(7) { height: 75%; animation-delay: 0.35s; }
+    .activity-row {
+      display: flex;
+      gap: 10px;
+    }
+    .activity-item {
+      flex: 1;
+      background: var(--bg-3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .activity-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      flex-shrink: 0;
+      box-shadow: 0 0 6px var(--green);
+    }
+    .activity-text {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-3);
+      line-height: 1.4;
+    }
+    .activity-text strong { color: var(--text-2); font-weight: 500; }
+
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .dashboard-wrap { display: none; }
+    }
+
+    /* ─── Problem Section ─────────────────────────────────────── */
+    #problema { background: var(--bg-2); }
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .pain-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+    .pain-card:hover {
+      border-color: rgba(255,80,80,0.25);
+      transform: translateY(-2px);
+    }
+    .pain-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #ff4444, transparent);
+    }
+    .pain-icon {
+      width: 40px;
+      height: 40px;
+      background: rgba(255,68,68,0.1);
+      border: 1px solid rgba(255,68,68,0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+    .pain-title {
+      font-family: var(--display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-1);
+      margin-bottom: 8px;
+    }
+    .pain-desc { font-size: 14px; color: var(--text-2); line-height: 1.55; }
+    .pain-footer {
+      margin-top: 48px;
+      padding: 28px;
+      background: var(--surface);
+      border: 1px solid rgba(255,68,68,0.15);
+      border-radius: var(--radius-lg);
+      text-align: center;
+    }
+    .pain-footer p {
+      font-family: var(--display);
+      font-size: clamp(18px, 2.5vw, 24px);
+      font-weight: 700;
+      color: var(--text-1);
+    }
+    .pain-footer p span { color: #ff6060; }
+
+    @media (max-width: 640px) { .pain-grid { grid-template-columns: 1fr; } }
+
+    /* ─── Solución ────────────────────────────────────────────── */
+    #solucion { background: var(--bg); }
+    .sol-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .sol-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: var(--transition);
+    }
+    .sol-card:hover {
+      border-color: var(--border-2);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    }
+    .sol-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--green-dim);
+      border: 1px solid rgba(0,232,122,0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      font-size: 18px;
+    }
+    .sol-title {
+      font-family: var(--display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-1);
+      margin-bottom: 8px;
+    }
+    .sol-desc { font-size: 14px; color: var(--text-2); line-height: 1.55; }
+
+    @media (max-width: 640px) { .sol-grid { grid-template-columns: 1fr; } }
+
+    /* ─── Beneficios ──────────────────────────────────────────── */
+    #beneficios { background: var(--bg-2); }
+    .benefits-list {
+      margin-top: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .benefit-row {
+      display: grid;
+      grid-template-columns: 52px 1fr auto;
+      align-items: center;
+      gap: 20px;
+      padding: 22px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: var(--transition);
+      cursor: default;
+    }
+    .benefit-row:hover {
+      background: var(--surface-2);
+      border-color: var(--border-2);
+    }
+    .benefit-num {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--green);
+      font-weight: 500;
+    }
+    .benefit-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .benefit-title {
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-1);
+    }
+    .benefit-sub { font-size: 13px; color: var(--text-2); }
+    .benefit-metric {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--green);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 500px) {
+      .benefit-row { grid-template-columns: 1fr; }
+      .benefit-metric { display: none; }
+    }
+
+    /* ─── Casos de Uso ────────────────────────────────────────── */
+    #casos { background: var(--bg); }
+    .cases-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 48px;
+    }
+    .case-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+    .case-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60px;
+      background: linear-gradient(to top, var(--surface) 0%, transparent 100%);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .case-card:hover {
+      border-color: rgba(0,232,122,0.18);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,232,122,0.06);
+    }
+    .case-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+      margin-bottom: 12px;
+    }
+    .case-title {
+      font-family: var(--display);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-1);
+      margin-bottom: 8px;
+    }
+    .case-desc { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+    .case-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+    .case-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--cyan);
+      background: var(--cyan-dim);
+      border: 1px solid rgba(34,211,238,0.15);
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 800px) { .cases-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .cases-grid { grid-template-columns: 1fr; } }
+
+    /* ─── Diferenciador ───────────────────────────────────────── */
+    #diferenciador { background: var(--bg-2); }
+    .diff-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+    .diff-vs {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .diff-row {
+      display: grid;
+      grid-template-columns: 1fr 24px 1fr;
+      align-items: center;
+      gap: 12px;
+    }
+    .diff-bad {
+      background: rgba(255,68,68,0.06);
+      border: 1px solid rgba(255,68,68,0.15);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-2);
+      text-align: right;
+    }
+    .diff-good {
+      background: var(--green-dim);
+      border: 1px solid rgba(0,232,122,0.18);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--text-1);
+    }
+    .diff-arrow { color: var(--text-3); font-size: 14px; text-align: center; }
+    .diff-quote {
+      margin-top: 40px;
+      padding: 28px;
+      background: var(--surface);
+      border-left: 2px solid var(--green);
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    }
+    .diff-quote p {
+      font-family: var(--display);
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--text-1);
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+    .diff-quote span { font-family: var(--mono); font-size: 12px; color: var(--text-3); }
+
+    @media (max-width: 800px) {
+      .diff-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+
+    /* ─── Proceso ─────────────────────────────────────────────── */
+    #proceso { background: var(--bg); }
+    .steps {
+      margin-top: 48px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: calc(12.5%);
+      right: calc(12.5%);
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-2), transparent);
+      z-index: 0;
+    }
+    .step {
+      position: relative;
+      z-index: 1;
+      padding: 0 16px 0;
+      text-align: center;
+    }
+    .step-circle {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--green);
+      position: relative;
+      transition: var(--transition);
+    }
+    .step:hover .step-circle {
+      background: var(--green-dim);
+      border-color: rgba(0,232,122,0.35);
+      box-shadow: 0 0 24px var(--green-glow);
+    }
+    .step-title {
+      font-family: var(--display);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-1);
+      margin-bottom: 8px;
+    }
+    .step-desc { font-size: 13px; color: var(--text-2); line-height: 1.55; }
+
+    @media (max-width: 700px) {
+      .steps { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+      .steps::before { display: none; }
+    }
+    @media (max-width: 400px) {
+      .steps { grid-template-columns: 1fr; }
+    }
+
+    /* ─── CTA Final ───────────────────────────────────────────── */
+    #cta {
+      background: var(--bg-2);
+      padding: 96px 0;
+    }
+    .cta-box {
+      background: var(--surface);
+      border: 1px solid var(--border-2);
+      border-radius: 24px;
+      padding: 72px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0,232,122,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-headline {
+      font-family: var(--display);
+      font-size: clamp(24px, 3.5vw, 40px);
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--text-1);
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .cta-sub {
+      font-size: 17px;
+      color: var(--text-2);
+      margin-bottom: 36px;
+      position: relative;
+    }
+    .cta-actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .cta-note {
+      margin-top: 20px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text-3);
+      position: relative;
+    }
+
+    @media (max-width: 600px) {
+      .cta-box { padding: 48px 24px; }
+    }
+
+    /* ─── Footer ──────────────────────────────────────────────── */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--text-3);
+      text-decoration: none;
+    }
+    .footer-logo span { color: var(--green); }
+    .footer-copy { font-size: 13px; color: var(--text-3); }
+
+    /* ─── WhatsApp Float ──────────────────────────────────────── */
+    .wa-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 24px rgba(37,211,102,0.35);
+      text-decoration: none;
+      transition: var(--transition);
+      animation: waPulse 3s infinite;
+    }
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 32px rgba(37,211,102,0.5);
+    }
+    .wa-float svg { width: 28px; height: 28px; fill: #fff; }
+    @keyframes waPulse {
+      0%, 100% { box-shadow: 0 8px 24px rgba(37,211,102,0.35); }
+      50%        { box-shadow: 0 8px 32px rgba(37,211,102,0.55), 0 0 0 8px rgba(37,211,102,0.08); }
+    }
+
+    /* ─── Fade-in on scroll ───────────────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Nav ─────────────────────────────────────────── -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">dev<span>.</span>medida</a>
+      <ul class="nav-links">
+        <li><a href="#solucion">Solución</a></li>
+        <li><a href="#casos">Casos de uso</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="https://wa.me/50712345678?text=Hola%2C%20quiero%20hablar%20sobre%20mi%20proceso" class="btn btn-primary" target="_blank" rel="noopener">
+          <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.847L0 24l6.32-1.508A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.213-3.727.889.916-3.618-.235-.372A9.818 9.818 0 1112 21.818z"/></svg>
+          Escríbeme
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Hero ────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="container hero-inner">
+      <div>
+        <div class="hero-eyebrow">Software que resuelve problemas reales</div>
+        <h1 class="hero-headline">
+          Potencia tu negocio con tecnología que <em>sí genera resultados</em>
+        </h1>
+        <p class="hero-sub">
+          Automatiza procesos, reduce errores y ahorra tiempo con soluciones web construidas exactamente para tu operación.
+        </p>
+        <div class="hero-actions">
+          <a href="https://wa.me/50712345678?text=Hola%2C%20quiero%20hablar%20sobre%20mi%20proceso" class="btn btn-primary" target="_blank" rel="noopener">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.847L0 24l6.32-1.508A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.213-3.727.889.916-3.618-.235-.372A9.818 9.818 0 1112 21.818z"/></svg>
+            Escríbeme por WhatsApp
+          </a>
+          <a href="#solucion" class="btn btn-secondary">Ver cómo funciona</a>
+        </div>
+        <div class="hero-social-proof">
+          <div class="proof-item">
+            <span class="proof-num">10+</span>
+            <span class="proof-label">años en producción</span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-num">PHP/Laravel</span>
+            <span class="proof-label">stack principal</span>
+          </div>
+          <div class="proof-item">
+            <span class="proof-num">Multi-tenant</span>
+            <span class="proof-label">arquitecturas SaaS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard Mockup -->
+      <div class="dashboard-wrap">
+        <div class="dashboard">
+          <div class="dash-header">
+            <div class="dot dot-r"></div>
+            <div class="dot dot-y"></div>
+            <div class="dot dot-g"></div>
+            <div class="dash-tab">ops.dashboard</div>
+          </div>
+          <div class="dash-body">
+            <div class="kpi-row">
+              <div class="kpi">
+                <div class="kpi-label">Órdenes</div>
+                <div class="kpi-value">1,248</div>
+                <div class="kpi-delta">↑ 12% esta semana</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Errores</div>
+                <div class="kpi-value">0.3%</div>
+                <div class="kpi-delta">↓ vs 8% manual</div>
+              </div>
+              <div class="kpi">
+                <div class="kpi-label">Tiempo ahorrado</div>
+                <div class="kpi-value">34h</div>
+                <div class="kpi-delta">esta semana</div>
+              </div>
+            </div>
+            <div class="chart-area">
+              <div class="chart-title">Procesamiento automático — últimos 7 días</div>
+              <div class="chart-bars">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar active"></div>
+                <div class="bar active"></div>
+                <div class="bar active"></div>
+              </div>
+            </div>
+            <div class="activity-row">
+              <div class="activity-item">
+                <div class="activity-dot"></div>
+                <div class="activity-text"><strong>Orden #1248</strong> procesada</div>
+              </div>
+              <div class="activity-item">
+                <div class="activity-dot"></div>
+                <div class="activity-text"><strong>Notificación</strong> enviada</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Problema ─────────────────────────────────────── -->
+  <section id="problema">
+    <div class="container">
+      <div class="fade-up">
+        <div class="tag">El problema real</div>
+        <h2 class="section-title">Tu operación corre en parches.<br>Y lo sabes.</h2>
+        <p class="section-sub">Cada proceso manual que no has digitalizado es tiempo perdido, un error esperando pasar, y un cuello de botella que no va a desaparecer solo.</p>
+      </div>
+      <div class="pain-grid fade-up" style="transition-delay:0.1s">
+        <div class="pain-card">
+          <div class="pain-icon">📊</div>
+          <div class="pain-title">¿Usas Excel, papel o WhatsApp desordenado?</div>
+          <p class="pain-desc">Tus datos viven en silos. Nadie tiene la versión correcta. Las decisiones se toman con información desactualizada o incompleta.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🔁</div>
+          <div class="pain-title">Procesos manuales que no escalan</div>
+          <p class="pain-desc">Para crecer, contratas más personas que hacen lo mismo. El costo operativo sube, la calidad no. Eso no es crecimiento, es inflación de personal.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">⚠️</div>
+          <div class="pain-title">Errores humanos constantes</div>
+          <p class="pain-desc">Datos duplicados, registros perdidos, cálculos incorrectos. Cada error manual tiene un costo real: tiempo de corrección, pérdida de confianza, fricción con clientes.</p>
+        </div>
+        <div class="pain-card">
+          <div class="pain-icon">🔲</div>
+          <div class="pain-title">Falta de visibilidad en tiempo real</div>
+          <p class="pain-desc">Tomas decisiones a ciegas. No sabes qué está pasando ahora en tu operación. Los reportes llegan tarde, cuando ya no sirven para reaccionar.</p>
+        </div>
+      </div>
+      <div class="pain-footer fade-up" style="transition-delay:0.2s">
+        <p>Eso no escala. <span>Eso te frena.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Solución ──────────────────────────────────────── -->
+  <section id="solucion">
+    <div class="container">
+      <div class="fade-up">
+        <div class="tag">La solución</div>
+        <h2 class="section-title">Software hecho para tu operación.<br>No para la demo.</h2>
+        <p class="section-sub">Sin buzzwords. Sin arquitecturas de NASA para un problema simple. Software que hace lo que necesita hacer, rápido y confiable.</p>
+      </div>
+      <div class="sol-grid fade-up" style="transition-delay:0.1s">
+        <div class="sol-card">
+          <div class="sol-icon">⚙️</div>
+          <div class="sol-title">Automatización de tareas repetitivas</div>
+          <p class="sol-desc">Identifica los procesos que tu equipo hace igual todos los días y los convertimos en flujos automáticos. El sistema trabaja, tu equipo piensa.</p>
+        </div>
+        <div class="sol-card">
+          <div class="sol-icon">📱</div>
+          <div class="sol-title">Digitalización de procesos operativos</div>
+          <p class="sol-desc">Formularios en papel, registros en WhatsApp, hojas de cálculo compartidas — todo migra a un sistema centralizado, con historial, permisos y auditoría.</p>
+        </div>
+        <div class="sol-card">
+          <div class="sol-icon">🗄️</div>
+          <div class="sol-title">Centralización de información</div>
+          <p class="sol-desc">Una sola fuente de verdad para toda tu operación. Todos ven lo mismo, en tiempo real, con los permisos correctos.</p>
+        </div>
+        <div class="sol-card">
+          <div class="sol-icon">🔌</div>
+          <div class="sol-title">Integraciones con sistemas existentes</div>
+          <p class="sol-desc">No tiramos lo que ya funciona. Conectamos tus herramientas actuales vía API: tu CRM, sistema contable, plataformas de pago, notificaciones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Beneficios ────────────────────────────────────── -->
+  <section id="beneficios">
+    <div class="container">
+      <div class="fade-up">
+        <div class="tag">Impacto en negocio</div>
+        <h2 class="section-title">Lo que gana tu empresa.</h2>
+        <p class="section-sub">No hablamos de features. Hablamos de resultados operativos medibles.</p>
+      </div>
+      <div class="benefits-list fade-up" style="transition-delay:0.1s">
+        <div class="benefit-row">
+          <span class="benefit-num">01</span>
+          <div class="benefit-text">
+            <span class="benefit-title">Ahorro de tiempo operativo</span>
+            <span class="benefit-sub">Eliminas horas de trabajo manual repetitivo. Tu equipo se enfoca en lo que agrega valor.</span>
+          </div>
+          <span class="benefit-metric">−40% tiempo operativo</span>
+        </div>
+        <div class="benefit-row">
+          <span class="benefit-num">02</span>
+          <div class="benefit-text">
+            <span class="benefit-title">Reducción de errores</span>
+            <span class="benefit-sub">Validaciones automáticas, flujos controlados. Los errores humanos se reducen a la mínima expresión.</span>
+          </div>
+          <span class="benefit-metric">−90% errores manuales</span>
+        </div>
+        <div class="benefit-row">
+          <span class="benefit-num">03</span>
+          <div class="benefit-text">
+            <span class="benefit-title">Mejores decisiones con datos reales</span>
+            <span class="benefit-sub">Dashboards en tiempo real. Ves lo que importa, cuando importa, sin esperar reportes.</span>
+          </div>
+          <span class="benefit-metric">Visibilidad 100% real-time</span>
+        </div>
+        <div class="benefit-row">
+          <span class="benefit-num">04</span>
+          <div class="benefit-text">
+            <span class="benefit-title">Escalabilidad sin contratar más personal</span>
+            <span class="benefit-sub">Duplicas el volumen de operaciones sin duplicar el equipo. El sistema absorbe el crecimiento.</span>
+          </div>
+          <span class="benefit-metric">2× volumen, mismo equipo</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Casos de Uso ──────────────────────────────────── -->
+  <section id="casos">
+    <div class="container">
+      <div class="fade-up">
+        <div class="tag">Casos de uso</div>
+        <h2 class="section-title">Qué se puede construir.</h2>
+        <p class="section-sub">Ejemplos concretos, no genéricos. Proyectos que ya existen o que puedo construir para ti.</p>
+      </div>
+      <div class="cases-grid fade-up" style="transition-delay:0.1s">
+        <div class="case-card">
+          <div class="case-num">001</div>
+          <div class="case-title">Sistemas internos de gestión</div>
+          <p class="case-desc">ERP ligero a medida. Control de inventario, pedidos, clientes y operaciones sin pagar licencias de software genérico que el 60% de tu equipo no usa.</p>
+          <div class="case-tags">
+            <span class="case-tag">CRUD avanzado</span>
+            <span class="case-tag">RBAC</span>
+            <span class="case-tag">Auditoría</span>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-num">002</div>
+          <div class="case-title">Control de asistencia y turnos</div>
+          <p class="case-desc">Registro digital de entrada/salida, planificación de turnos, alertas automáticas de ausencias. Adiós a las hojas de Excel con colores.</p>
+          <div class="case-tags">
+            <span class="case-tag">QR / Geoloc</span>
+            <span class="case-tag">Notificaciones</span>
+            <span class="case-tag">Reportes</span>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-num">003</div>
+          <div class="case-title">Dashboards en tiempo real</div>
+          <p class="case-desc">KPIs operativos visibles en cualquier dispositivo. Datos actualizados al instante, no al día siguiente cuando ya no sirven para decidir.</p>
+          <div class="case-tags">
+            <span class="case-tag">WebSockets</span>
+            <span class="case-tag">Charts</span>
+            <span class="case-tag">Multi-rol</span>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-num">004</div>
+          <div class="case-title">Automatización de flujos de trabajo</div>
+          <p class="case-desc">Aprobaciones, notificaciones, cambios de estado, envíos de correo, generación de documentos — todo sin intervención humana.</p>
+          <div class="case-tags">
+            <span class="case-tag">FSM</span>
+            <span class="case-tag">Queues</span>
+            <span class="case-tag">Email/SMS</span>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-num">005</div>
+          <div class="case-title">Integraciones entre sistemas</div>
+          <p class="case-desc">Conecta tu plataforma de e-commerce con tu bodega. Tu CRM con tu sistema de facturación. Tu ERP con WhatsApp. Las APIs están ahí para usarlas.</p>
+          <div class="case-tags">
+            <span class="case-tag">REST APIs</span>
+            <span class="case-tag">Webhooks</span>
+            <span class="case-tag">ETL</span>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-num">006</div>
+          <div class="case-title">Plataformas multi-tenant SaaS</div>
+          <p class="case-desc">Si tu solución sirve a múltiples empresas, construimos la arquitectura correcta desde el inicio. Aislamiento de datos, billing, onboarding automatizado.</p>
+          <div class="case-tags">
+            <span class="case-tag">Multi-tenant</span>
+            <span class="case-tag">Stripe</span>
+            <span class="case-tag">Escala</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Diferenciador ─────────────────────────────────── -->
+  <section id="diferenciador">
+    <div class="container">
+      <div class="diff-inner">
+        <div class="fade-up">
+          <div class="tag">Por qué no somos lo mismo</div>
+          <h2 class="section-title">Sin humo.<br>Sin microservicios<br>innecesarios.</h2>
+          <div class="diff-vs">
+            <div class="diff-row">
+              <div class="diff-bad">Páginas web genéricas</div>
+              <div class="diff-arrow">→</div>
+              <div class="diff-good">Herramientas que resuelven problemas reales</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-bad">Arquitecturas de 18 capas</div>
+              <div class="diff-arrow">→</div>
+              <div class="diff-good">La complejidad mínima necesaria</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-bad">Estimaciones de meses</div>
+              <div class="diff-arrow">→</div>
+              <div class="diff-good">Entrega iterativa desde semana 1</div>
+            </div>
+            <div class="diff-row">
+              <div class="diff-bad">Código que no puedes mantener</div>
+              <div class="diff-arrow">→</div>
+              <div class="diff-good">Código documentado que tu equipo entiende</div>
+            </div>
+          </div>
+        </div>
+        <div class="fade-up" style="transition-delay:0.15s">
+          <div class="diff-quote">
+            <p>"No vendemos páginas web genéricas. Construimos herramientas que resuelven problemas reales."</p>
+            <span>Soluciones simples &gt; arquitecturas innecesarias</span>
+          </div>
+          <div style="margin-top:20px; padding:24px; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius-lg);">
+            <p style="font-family:var(--mono);font-size:12px;color:var(--text-3);margin-bottom:12px;">STACK PROBADO EN PRODUCCIÓN</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <span style="font-family:var(--mono);font-size:11px;color:var(--cyan);background:var(--cyan-dim);border:1px solid rgba(34,211,238,0.15);padding:4px 10px;border-radius:4px;">PHP / Laravel</span>
+              <span style="font-family:var(--mono);font-size:11px;color:var(--cyan);background:var(--cyan-dim);border:1px solid rgba(34,211,238,0.15);padding:4px 10px;border-radius:4px;">Livewire</span>
+              <span style="font-family:var(--mono);font-size:11px;color:var(--cyan);background:var(--cyan-dim);border:1px solid rgba(34,211,238,0.15);padding:4px 10px;border-radius:4px;">PostgreSQL</span>
+              <span style="font-family:var(--mono);font-size:11px;color:var(--cyan);background:var(--cyan-dim);border:1px solid rgba(34,211,238,0.15);padding:4px 10px;border-radius:4px;">Next.js</span>
+              <span style="font-family:var(--mono);font-size:11px;color:var(--cyan);background:var(--cyan-dim);border:1px solid rgba(34,211,238,0.15);padding:4px 10px;border-radius:4px;">REST APIs</span>
+              <span style="font-family:var(--mono);font-size:11px;color:var(--cyan);background:var(--cyan-dim);border:1px solid rgba(34,211,238,0.15);padding:4px 10px;border-radius:4px;">Multi-tenant</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── Proceso ───────────────────────────────────────── -->
+  <section id="proceso">
+    <div class="container">
+      <div class="fade-up" style="text-align:center;max-width:580px;margin:0 auto 48px;">
+        <div class="tag">Cómo trabajamos</div>
+        <h2 class="section-title">Sin metodologías de 200 páginas.</h2>
+        <p class="section-sub" style="margin:0 auto;">Proceso directo, enfocado en entregar valor desde el primer sprint.</p>
+      </div>
+      <div class="steps fade-up" style="transition-delay:0.1s">
+        <div class="step">
+          <div class="step-circle">01</div>
+          <div class="step-title">Analiza el problema</div>
+          <p class="step-desc">Entendemos tu operación actual. Identificamos el dolor real, no el síntoma. Sin suposiciones.</p>
+        </div>
+        <div class="step">
+          <div class="step-circle">02</div>
+          <div class="step-title">Diseña la solución</div>
+          <p class="step-desc">Proponemos la arquitectura mínima necesaria. Sin sobreingeniería. Enfocada en tu caso concreto.</p>
+        </div>
+        <div class="step">
+          <div class="step-circle">03</div>
+          <div class="step-title">Construye rápido</div>
+          <p class="step-desc">Entregas iterativas. Algo funcional en tus manos en días, no meses. Feedback real desde el inicio.</p>
+        </div>
+        <div class="step">
+          <div class="step-circle">04</div>
+          <div class="step-title">Itera con datos</div>
+          <p class="step-desc">Ajustamos con base en uso real, no en suposiciones de sala de reuniones. El producto mejora con la operación.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── CTA Final ─────────────────────────────────────── -->
+  <section id="cta">
+    <div class="container">
+      <div class="cta-box fade-up">
+        <h2 class="cta-headline">Tu negocio no necesita más trabajo.<br>Necesita mejores sistemas.</h2>
+        <p class="cta-sub">Una conversación de 30 minutos puede identificar dónde estás perdiendo tiempo y dinero hoy.</p>
+        <div class="cta-actions">
+          <a href="https://wa.me/50712345678?text=Hola%2C%20quiero%20analizar%20mi%20proceso%20operativo" class="btn btn-primary" target="_blank" rel="noopener" style="padding:16px 32px;font-size:16px;">
+            <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.847L0 24l6.32-1.508A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.213-3.727.889.916-3.618-.235-.372A9.818 9.818 0 1112 21.818z"/></svg>
+            Hablemos por WhatsApp
+          </a>
+        </div>
+        <p class="cta-note">Sin compromiso. Sin pitch de ventas genérico. Solo una conversación técnica sobre tu operación.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────── -->
+  <footer>
+    <div class="container footer-inner">
+      <a href="#" class="footer-logo">dev<span>.</span>medida</a>
+      <span class="footer-copy">Automatización &amp; Desarrollo Web a Medida · Panamá</span>
+    </div>
+  </footer>
+
+  <!-- ── WhatsApp Float ─────────────────────────────────── -->
+  <a href="https://wa.me/50712345678?text=Hola%2C%20quiero%20hablar%20sobre%20mi%20proceso" class="wa-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.555 4.116 1.524 5.847L0 24l6.32-1.508A11.95 11.95 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.006-1.372l-.36-.213-3.727.889.916-3.618-.235-.372A9.818 9.818 0 1112 21.818z"/>
+    </svg>
+  </a>
+
+  <script>
+    // Fade-up on scroll — IntersectionObserver, zero libs, no layout thrash
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Nav active link highlight
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          navLinks.forEach(a => a.style.color = '');
+          const active = document.querySelector(`.nav-links a[href="#${e.target.id}"]`);
+          if (active) active.style.color = 'var(--green)';
+        }
+      });
+    }, { rootMargin: '-40% 0px -55%', threshold: 0 });
+
+    sections.forEach(s => sectionObserver.observe(s));
+  </script>
+
+</body>
+</html>

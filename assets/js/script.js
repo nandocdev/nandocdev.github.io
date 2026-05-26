@@ -20,10 +20,10 @@ const sendAnalyticsEvent = (eventName, params = {}) => {
 
 const buildWhatsAppUrl = (message) => {
   const phone = String(siteConfig?.contact?.whatsappPhone || '').replace(/\D/g, '');
-  const defaultMessage = String(siteConfig?.contact?.defaultMessage || '');
-  const finalMessage = String(message || defaultMessage).trim().slice(0, 500);
+  const defaultMessage = String(siteConfig?.contact?.defaultMessage || '').trim();
+  const finalMessage = String(message || defaultMessage).trim();
 
-  if (!phone) {
+  if (phone.length < 8 || phone.length > 15) {
     console.warn('WhatsApp no configurado; se usa el fallback por defecto.');
     return DEFAULT_WHATSAPP_HREF;
   }

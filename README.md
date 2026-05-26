@@ -1,48 +1,57 @@
-# Portfolio: Architectural Logic 🚀
+# nandoc.dev
 
-A premium, high-converting personal portfolio designed specifically for Backend Engineers and Automation Consultants. This project focuses on technical credibility, business value, and extreme performance.
+Landing estática para servicios de automatización de procesos y software a medida, optimizada para GitHub Pages.
 
-![Portfolio Preview](https://lh3.googleusercontent.com/aida/ADBb0ugqg4VouFc4ZkZ1rpHrOV2LRI9HlqToG_ypOfzhNXtcyoDwtujl3ahnclKqOzDm0Cmbn167bdxYoyR-uo1NYnPT0yTHIuAWBm_EPuL-WDmEMfCPExC5Lh_qjNJFKR5U7wucn0o6NFSr-ienuLsbQ859qX_eNYrH2h_krBZMHIgbH8zGuJOeXX6uguOl4VnTH6l_pN267wui7qs4JYVCJX9VWQHzGKDLYbbJ0UvqdqSI3jI7GQ5EvByo)
+![Vista previa del sitio](assets/img/og-image.png)
 
-## 💎 Design Philosophy: "Architectural Logic"
+## Stack
 
-The UI follows a professional "Architectural Logic" theme, characterized by:
-- **Obsidian Palettes**: Deep #131313 backgrounds for a sophisticated technical feel.
-- **Neon Accents**: High-contrast green and cyan accents for critical CTA points.
-- **Glassmorphism**: Precise backdrop filters and translucent surfaces that create depth.
-- **Technical Typography**: Using *Plus Jakarta Sans* for headlines and *JetBrains Mono* for data points.
+- HTML semántico
+- CSS vanilla
+- JavaScript vanilla
+- SVG sprite inline
+- GitHub Pages
 
-## 🛠️ Technical Stack
+## Estructura
 
-- **Structure**: Semantic HTML5 with SEO optimization.
-- **Styling**: Vanilla CSS3 using custom properties (Design Tokens) and Glassmorphism.
-- **Logic**: Vanilla JavaScript with Intersection Observer for scroll-based reveal animations.
-- **Icons**: Optimized SVG Sprite system for maximum performance and minimum network requests.
-- **Performance**: Zero external dependencies (libraries/frameworks), resulting in near-perfect Lighthouse scores.
-
-## 📁 Project Structure
-
-```bash
-.
-├── assets/
-│   ├── css/
-│   │   └── style.css      # Custom Design System & Tokens
-│   ├── js/
-│   │   └── script.js     # Intersection Observer & UI Logic
-│   └── img/
-│       └── icons/        # SVG Vector assets
-├── index.html            # Main entry point (Clean & Modular)
-└── README.md             # This file
+```text
+assets/
+  css/
+  fonts/
+  img/
+  js/
+index.html
+README.md
 ```
 
-## 🚀 Deployment
+## Decisiones actuales
 
-This portfolio is optimized for **GitHub Pages**. Simply push to the `main` branch (or your default branch) and enable GitHub Pages in your repository settings.
+- Sin framework UI ni build step.
+- Tipografías self-hosted para evitar dependencias de Google Fonts.
+- SEO base resuelto en `index.html` con canonical, Open Graph y JSON-LD.
+- Tracking mínimo con Google Analytics para CTAs, scroll depth y vistas de secciones.
+- Configuración repetida de contacto centralizada en `#site-config`.
 
-## 👨‍💻 Author
+## Analytics instrumentado
 
-**Fernando Castillo (@nandocdev)**
-Backend Engineer & Automation Specialist.
+Eventos enviados con `gtag`:
 
----
-*Built with precision and high-performance standards.*
+- `cta_click`
+- `section_view`
+- `scroll_depth`
+
+Los CTAs separan:
+
+- `location`
+- `channel`
+- `intent`
+
+## Assets locales
+
+- Preview social: `assets/img/og-image.png`
+- Favicon: `assets/img/icons/favicon.svg`
+- Tipografías: `assets/fonts/`
+
+## Deploy
+
+El sitio se publica como página estática en GitHub Pages desde la raíz del repositorio.

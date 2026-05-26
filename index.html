@@ -4,21 +4,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index,follow" />
   <meta name="description"
-    content="Automatización de procesos y desarrollo web a medida. Soluciones que reducen errores, ahorran tiempo y escalan tu negocio." />
+    content="Automatización de procesos y software a medida para operaciones que necesitan menos retrabajo, mejor trazabilidad y más visibilidad." />
   <meta name="keywords"
     content="automatización de procesos, desarrollo web a medida, software empresarial, integración de sistemas, dashboards, digitalización" />
-  <meta property="og:title" content="Soluciones de software que sí generan resultados" />
+  <link rel="canonical" href="https://nandocdev.github.io/" />
+  <meta property="og:title" content="Automatización de procesos y software a medida" />
   <meta property="og:description"
-    content="Automatiza procesos, reduce errores y ahorra tiempo con desarrollo web a medida." />
+    content="Sistemas internos, integraciones y flujos automatizados para reducir errores y dar visibilidad real a tu operación." />
   <meta property="og:type" content="website" />
-  <title>Dev a Medida · Automatización &amp; Software Empresarial</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
-    rel="stylesheet" />
+  <meta property="og:url" content="https://nandocdev.github.io/" />
+  <meta property="og:site_name" content="nandoc.dev" />
+  <meta property="og:locale" content="es_PA" />
+  <meta property="og:image" content="https://nandocdev.github.io/assets/img/og-image.png" />
+  <meta property="og:image:alt" content="Preview de nandoc.dev con enfoque en automatización, trazabilidad y software a medida." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Automatización de procesos y software a medida" />
+  <meta name="twitter:description"
+    content="Automatiza procesos críticos, centraliza información y reduce retrabajo con sistemas hechos para tu operación." />
+  <meta name="twitter:image" content="https://nandocdev.github.io/assets/img/og-image.png" />
+  <title>Automatización de procesos y software a medida | nandoc.dev</title>
 
   <link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg" />
   <link rel="stylesheet" href="assets/css/style.css" />
@@ -29,7 +35,64 @@
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
-    gtag('config', 'G-N24GCBE4KR');
+    gtag('config', 'G-N24GCBE4KR', {
+      anonymize_ip: true
+    });
+  </script>
+  <script id="site-config" type="application/json">
+    {
+      "siteUrl": "https://nandocdev.github.io/",
+      "contact": {
+        "whatsappPhone": "50764879448",
+        "defaultMessage": "Me gustaría automatizar un proceso en mi negocio. ¿Podemos hablar?"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://nandocdev.github.io/#business",
+          "name": "nandoc.dev",
+          "url": "https://nandocdev.github.io/",
+          "image": "https://nandocdev.github.io/assets/img/og-image.png",
+          "description": "Automatización de procesos, sistemas internos e integraciones para operaciones que necesitan menos errores y más visibilidad.",
+          "areaServed": {
+            "@type": "Country",
+            "name": "Panamá"
+          },
+          "serviceType": [
+            "Automatización de procesos",
+            "Desarrollo de software a medida",
+            "Integración de sistemas",
+            "Dashboards operativos"
+          ],
+          "availableLanguage": [
+            "es",
+            "en"
+          ]
+        },
+        {
+          "@type": "Person",
+          "@id": "https://nandocdev.github.io/#person",
+          "name": "Fernando Castillo",
+          "url": "https://nandocdev.github.io/",
+          "jobTitle": "Back-end Engineer & Automation Specialist",
+          "worksFor": {
+            "@id": "https://nandocdev.github.io/#business"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://nandocdev.github.io/#website",
+          "url": "https://nandocdev.github.io/",
+          "name": "nandoc.dev",
+          "inLanguage": "es"
+        }
+      ]
+    }
   </script>
 </head>
 
@@ -107,8 +170,8 @@
         <li><a href="#proceso">Proceso</a></li>
       </ul>
       <div class="nav-cta">
-        <a href="https://wa.me/50764879448?text=me%20gustar%C3%ADa%20automatizar%20un%20proceso%20en%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F"
-          class="btn btn-primary" target="_blank" rel="noopener">
+        <a href="https://wa.me/50764879448" class="btn btn-primary" target="_blank" rel="noopener" data-whatsapp-link data-track="cta"
+          data-location="nav" data-channel="whatsapp" data-intent="contact">
           <svg class="btn-icon">
             <use href="#icon-whatsapp"></use>
           </svg>
@@ -119,7 +182,7 @@
   </nav>
 
   <!-- ── Hero ────────────────────────────────────────── -->
-  <section id="hero">
+  <section id="hero" data-track-section="hero" data-section-name="Hero" data-funnel-stage="awareness">
     <div class="hero-grid-bg"></div>
     <div class="hero-glow"></div>
     <div class="container hero-inner">
@@ -133,60 +196,62 @@
           operación.
         </p>
         <div class="hero-actions">
-          <a href="https://wa.me/50764879448?text=me%20gustar%C3%ADa%20automatizar%20un%20proceso%20en%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F"
-            class="btn btn-primary" target="_blank" rel="noopener">
+          <a href="https://wa.me/50764879448" class="btn btn-primary" target="_blank" rel="noopener" data-whatsapp-link
+            data-track="cta" data-location="hero_primary" data-channel="whatsapp" data-intent="contact">
             <svg class="btn-icon">
               <use href="#icon-whatsapp"></use>
             </svg>
             Escríbeme por WhatsApp
           </a>
-          <a href="#solucion" class="btn btn-secondary">Ver cómo funciona</a>
+          <a href="#solucion" class="btn btn-secondary" data-track="cta" data-location="hero_secondary"
+            data-channel="internal" data-intent="explore_solution">Ver cómo funciona</a>
         </div>
         <div class="hero-social-proof">
           <div class="proof-item">
             <span class="proof-num">10+</span>
-            <span class="proof-label">años en producción</span>
+            <span class="proof-label">años entregando software en producción</span>
           </div>
           <div class="proof-item">
-            <span class="proof-num">PHP/Laravel</span>
-            <span class="proof-label">stack principal</span>
+            <span class="proof-num">Operación crítica</span>
+            <span class="proof-label">pedidos, asistencia, aprobaciones y reportes</span>
           </div>
           <div class="proof-item">
-            <span class="proof-num">Multi-tenant</span>
-            <span class="proof-label">arquitecturas SaaS</span>
+            <span class="proof-num">Integración real</span>
+            <span class="proof-label">APIs, dashboards y flujos automatizados</span>
           </div>
         </div>
       </div>
 
-      <!-- Dashboard Mockup -->
+      <!-- Dashboard Example -->
       <div class="dashboard-wrap">
+        <p class="dashboard-note">Ejemplo de tablero para una operación con aprobaciones, seguimiento y alertas.</p>
         <div class="dashboard">
           <div class="dash-header">
             <div class="dot dot-r"></div>
             <div class="dot dot-y"></div>
             <div class="dot dot-g"></div>
-            <div class="dash-tab">ops.dashboard</div>
+            <div class="dash-tab">operacion.centralizada</div>
           </div>
           <div class="dash-body">
             <div class="kpi-row">
               <div class="kpi">
-                <div class="kpi-label">Órdenes</div>
-                <div class="kpi-value">1,248</div>
-                <div class="kpi-delta">↑ 12% esta semana</div>
+                <div class="kpi-label">Respuesta</div>
+                <div class="kpi-value">24h → 2h</div>
+                <div class="kpi-delta">menos espera en cotizaciones y aprobaciones</div>
               </div>
               <div class="kpi">
-                <div class="kpi-label">Errores</div>
-                <div class="kpi-value">0.3%</div>
-                <div class="kpi-delta">↓ vs 8% manual</div>
+                <div class="kpi-label">Trazabilidad</div>
+                <div class="kpi-value">1 panel</div>
+                <div class="kpi-delta">pedidos, estados y responsables en un solo lugar</div>
               </div>
               <div class="kpi">
-                <div class="kpi-label">Tiempo ahorrado</div>
-                <div class="kpi-value">34h</div>
-                <div class="kpi-delta">esta semana</div>
+                <div class="kpi-label">Alertas</div>
+                <div class="kpi-value">Automáticas</div>
+                <div class="kpi-delta">sin perseguir tareas por WhatsApp o Excel</div>
               </div>
             </div>
             <div class="chart-area">
-              <div class="chart-title">Procesamiento automático — últimos 7 días</div>
+              <div class="chart-title">Flujo operativo digitalizado — últimos 7 días</div>
               <div class="chart-bars">
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -200,11 +265,11 @@
             <div class="activity-row">
               <div class="activity-item">
                 <div class="activity-dot"></div>
-                <div class="activity-text"><strong>Orden #1248</strong> procesada</div>
+                <div class="activity-text"><strong>Cotización #248</strong> aprobada y enviada a operaciones</div>
               </div>
               <div class="activity-item">
                 <div class="activity-dot"></div>
-                <div class="activity-text"><strong>Notificación</strong> enviada</div>
+                <div class="activity-text"><strong>Cliente</strong> notificado y pedido asignado a bodega</div>
               </div>
             </div>
           </div>
@@ -216,7 +281,7 @@
   <div class="divider"></div>
 
   <!-- ── Problema ─────────────────────────────────────── -->
-  <section id="problema">
+  <section id="problema" data-track-section="problema" data-section-name="Problema" data-funnel-stage="awareness">
     <div class="container">
       <div class="fade-up">
         <div class="tag">El problema real</div>
@@ -267,7 +332,7 @@
   <div class="divider"></div>
 
   <!-- ── Solución ──────────────────────────────────────── -->
-  <section id="solucion">
+  <section id="solucion" data-track-section="solucion" data-section-name="Solución" data-funnel-stage="consideration">
     <div class="container">
       <div class="fade-up">
         <div class="tag">La solución</div>
@@ -315,7 +380,7 @@
   <div class="divider"></div>
 
   <!-- ── Beneficios ────────────────────────────────────── -->
-  <section id="beneficios">
+  <section id="beneficios" data-track-section="beneficios" data-section-name="Beneficios" data-funnel-stage="consideration">
     <div class="container">
       <div class="fade-up">
         <div class="tag">Impacto en negocio</div>
@@ -330,7 +395,7 @@
             <span class="benefit-sub">Eliminas horas de trabajo manual repetitivo. Tu equipo se enfoca en lo que agrega
               valor.</span>
           </div>
-          <span class="benefit-metric">−40% tiempo operativo</span>
+          <span class="benefit-metric">menos tareas repetitivas y más foco operativo</span>
         </div>
         <div class="benefit-row">
           <span class="benefit-num">02</span>
@@ -339,7 +404,7 @@
             <span class="benefit-sub">Validaciones automáticas, flujos controlados. Los errores humanos se reducen a la
               mínima expresión.</span>
           </div>
-          <span class="benefit-metric">−90% errores manuales</span>
+          <span class="benefit-metric">menos retrabajo, menos pérdida de contexto</span>
         </div>
         <div class="benefit-row">
           <span class="benefit-num">03</span>
@@ -348,7 +413,7 @@
             <span class="benefit-sub">Dashboards en tiempo real. Ves lo que importa, cuando importa, sin esperar
               reportes.</span>
           </div>
-          <span class="benefit-metric">Visibilidad 100% real-time</span>
+          <span class="benefit-metric">datos disponibles cuando toca decidir</span>
         </div>
         <div class="benefit-row">
           <span class="benefit-num">04</span>
@@ -357,7 +422,7 @@
             <span class="benefit-sub">Duplicas el volumen de operaciones sin duplicar el equipo. El sistema absorbe el
               crecimiento.</span>
           </div>
-          <span class="benefit-metric">2× volumen, mismo equipo</span>
+          <span class="benefit-metric">más capacidad sin multiplicar el caos</span>
         </div>
       </div>
     </div>
@@ -366,7 +431,7 @@
   <div class="divider"></div>
 
   <!-- ── Casos de Uso ──────────────────────────────────── -->
-  <section id="casos">
+  <section id="casos" data-track-section="casos" data-section-name="Casos de uso" data-funnel-stage="evaluation">
     <div class="container">
       <div class="fade-up">
         <div class="tag">Casos de uso</div>
@@ -377,20 +442,20 @@
       <div class="cases-grid fade-up" style="transition-delay:0.1s">
         <div class="case-card">
           <div class="case-num">001</div>
-          <div class="case-title">Sistemas internos de gestión</div>
-          <p class="case-desc">ERP ligero a medida. Control de inventario, pedidos, clientes y operaciones sin pagar
-            licencias de software genérico que el 60% de tu equipo no usa.</p>
+          <div class="case-title">Cotización → aprobación → orden de trabajo</div>
+          <p class="case-desc">Un flujo completo para ventas y operaciones: cotizas, apruebas, asignas responsables y
+            dejas trazabilidad sin perseguir versiones por chat o correo.</p>
           <div class="case-tags">
-            <span class="case-tag">CRUD avanzado</span>
-            <span class="case-tag">RBAC</span>
+            <span class="case-tag">Estados</span>
             <span class="case-tag">Auditoría</span>
+            <span class="case-tag">Notificaciones</span>
           </div>
         </div>
         <div class="case-card">
           <div class="case-num">002</div>
-          <div class="case-title">Control de asistencia y turnos</div>
-          <p class="case-desc">Registro digital de entrada/salida, planificación de turnos, alertas automáticas de
-            ausencias. Adiós a las hojas de Excel con colores.</p>
+          <div class="case-title">Asistencia, turnos y novedades de campo</div>
+          <p class="case-desc">Registro digital de entrada y salida, cambios de turno, incidencias y alertas para
+            supervisores. Todo queda centralizado y listo para reportar.</p>
           <div class="case-tags">
             <span class="case-tag">QR / Geoloc</span>
             <span class="case-tag">Notificaciones</span>
@@ -399,31 +464,31 @@
         </div>
         <div class="case-card">
           <div class="case-num">003</div>
-          <div class="case-title">Dashboards en tiempo real</div>
-          <p class="case-desc">KPIs operativos visibles en cualquier dispositivo. Datos actualizados al instante, no al
-            día siguiente cuando ya no sirven para decidir.</p>
+          <div class="case-title">Panel operativo para pedidos y despacho</div>
+          <p class="case-desc">Pedidos, stock, despacho y entregas visibles en un solo panel para que operaciones,
+            soporte y gerencia vean lo mismo sin pedir reportes manuales.</p>
           <div class="case-tags">
-            <span class="case-tag">WebSockets</span>
-            <span class="case-tag">Charts</span>
+            <span class="case-tag">Dashboards</span>
+            <span class="case-tag">Alertas</span>
             <span class="case-tag">Multi-rol</span>
           </div>
         </div>
         <div class="case-card">
           <div class="case-num">004</div>
-          <div class="case-title">Automatización de flujos de trabajo</div>
-          <p class="case-desc">Aprobaciones, notificaciones, cambios de estado, envíos de correo, generación de
-            documentos — todo sin intervención humana.</p>
+          <div class="case-title">Aprobaciones internas sin cuellos de botella</div>
+          <p class="case-desc">Solicitudes de compra, vacaciones, descuentos o excepciones con reglas claras, trazabilidad
+            y recordatorios automáticos hasta cerrar cada caso.</p>
           <div class="case-tags">
-            <span class="case-tag">FSM</span>
-            <span class="case-tag">Queues</span>
+            <span class="case-tag">Workflows</span>
+            <span class="case-tag">Colas</span>
             <span class="case-tag">Email/SMS</span>
           </div>
         </div>
         <div class="case-card">
           <div class="case-num">005</div>
-          <div class="case-title">Integraciones entre sistemas</div>
-          <p class="case-desc">Conecta tu plataforma de e-commerce con tu bodega. Tu CRM con tu sistema de facturación.
-            Tu ERP con WhatsApp. Las APIs están ahí para usarlas.</p>
+          <div class="case-title">Integración entre ventas, facturación y bodega</div>
+          <p class="case-desc">Conecta formularios, e-commerce, CRM, ERP o facturación para evitar doble digitación,
+            errores de inventario y retrasos entre equipos.</p>
           <div class="case-tags">
             <span class="case-tag">REST APIs</span>
             <span class="case-tag">Webhooks</span>
@@ -432,13 +497,13 @@
         </div>
         <div class="case-card">
           <div class="case-num">006</div>
-          <div class="case-title">Plataformas multi-tenant SaaS</div>
-          <p class="case-desc">Si tu solución sirve a múltiples empresas, construimos la arquitectura correcta desde el
-            inicio. Aislamiento de datos, billing, onboarding automatizado.</p>
+          <div class="case-title">Portal para clientes con historial y autoservicio</div>
+          <p class="case-desc">Un espacio donde tus clientes consultan estados, descargan documentos, crean solicitudes y
+            reciben actualizaciones sin depender de seguimiento manual.</p>
           <div class="case-tags">
-            <span class="case-tag">Multi-tenant</span>
-            <span class="case-tag">Stripe</span>
-            <span class="case-tag">Escala</span>
+            <span class="case-tag">Portal</span>
+            <span class="case-tag">Permisos</span>
+            <span class="case-tag">Autoservicio</span>
           </div>
         </div>
       </div>
@@ -448,7 +513,7 @@
   <div class="divider"></div>
 
   <!-- ── Diferenciador ─────────────────────────────────── -->
-  <section id="diferenciador">
+  <section id="diferenciador" data-track-section="diferenciador" data-section-name="Diferenciador" data-funnel-stage="evaluation">
     <div class="container">
       <div class="diff-inner">
         <div class="fade-up">
@@ -511,7 +576,7 @@
   <div class="divider"></div>
 
   <!-- ── Proceso ───────────────────────────────────────── -->
-  <section id="proceso">
+  <section id="proceso" data-track-section="proceso" data-section-name="Proceso" data-funnel-stage="decision">
     <div class="container">
       <div class="fade-up" style="text-align:center;max-width:580px;margin:0 auto 48px;">
         <div class="tag">Cómo trabajamos</div>
@@ -551,15 +616,16 @@
   <div class="divider"></div>
 
   <!-- ── CTA Final ─────────────────────────────────────── -->
-  <section id="cta">
+  <section id="cta" data-track-section="cta" data-section-name="CTA final" data-funnel-stage="decision">
     <div class="container">
       <div class="cta-box fade-up">
         <h2 class="cta-headline">Tu negocio no necesita más trabajo.<br>Necesita mejores sistemas.</h2>
         <p class="cta-sub">Una conversación de 30 minutos puede identificar dónde estás perdiendo tiempo y dinero hoy.
         </p>
         <div class="cta-actions">
-          <a href="https://wa.me/50764879448?text=me%20gustar%C3%ADa%20automatizar%20un%20proceso%20en%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F"
-            class="btn btn-primary" target="_blank" rel="noopener" style="padding:16px 32px;font-size:16px;">
+          <a href="https://wa.me/50764879448" class="btn btn-primary" target="_blank" rel="noopener"
+            style="padding:16px 32px;font-size:16px;" data-whatsapp-link data-track="cta" data-location="cta_final"
+            data-channel="whatsapp" data-intent="contact">
             <svg class="btn-icon">
               <use href="#icon-whatsapp"></use>
             </svg>
@@ -581,8 +647,8 @@
   </footer>
 
   <!-- ── WhatsApp Float ─────────────────────────────────── -->
-  <a href="https://wa.me/50764879448?text=me%20gustar%C3%ADa%20automatizar%20un%20proceso%20en%20mi%20negocio.%20%C2%BFPodemos%20hablar%3F"
-    class="wa-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+  <a href="https://wa.me/50764879448" class="wa-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"
+    data-whatsapp-link data-track="cta" data-location="whatsapp_float" data-channel="whatsapp" data-intent="contact">
     <svg>
       <use href="#icon-whatsapp"></use>
     </svg>

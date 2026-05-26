@@ -1,3 +1,27 @@
+    @font-face {
+      font-family: 'Liberation Sans Local';
+      src: url('../fonts/liberation-sans-regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Liberation Sans Local';
+      src: url('../fonts/liberation-sans-bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Liberation Mono Local';
+      src: url('../fonts/liberation-mono-regular.ttf') format('truetype');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+
     /* ─── Reset & Variables ───────────────────────────────────── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -17,9 +41,9 @@
       --text-1:      #e5e2e1;
       --text-2:      #bacbba;
       --text-3:      #849585;
-      --mono:        'JetBrains Mono', monospace;
-      --sans:        'Inter', sans-serif;
-      --display:     'Plus Jakarta Sans', sans-serif;
+      --mono:        'Liberation Mono Local', 'SFMono-Regular', Consolas, monospace;
+      --sans:        'Liberation Sans Local', 'Segoe UI', sans-serif;
+      --display:     'Liberation Sans Local', 'Segoe UI', sans-serif;
       --radius:      4px;
       --radius-lg:   8px;
       --transition:  0.2s cubic-bezier(0.4, 0, 0.2, 1);
@@ -242,12 +266,21 @@
       font-size: 22px;
       font-weight: 700;
       color: var(--text-1);
+      line-height: 1.2;
     }
-    .proof-label { font-size: 13px; color: var(--text-3); }
+    .proof-label { font-size: 13px; color: var(--text-3); max-width: 160px; }
 
     /* ─── Dashboard Mockup ────────────────────────────────────── */
     .dashboard-wrap {
       position: relative;
+    }
+    .dashboard-note {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
     }
     .dashboard-wrap::before {
       content: '';
@@ -308,15 +341,17 @@
     }
     .kpi-value {
       font-family: var(--display);
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
       color: var(--text-1);
+      line-height: 1.25;
     }
     .kpi-delta {
       font-family: var(--mono);
       font-size: 10px;
       color: var(--green);
       margin-top: 2px;
+      line-height: 1.5;
     }
     .chart-area {
       background: var(--bg-3);
@@ -573,10 +608,10 @@
     .benefit-sub { font-size: 13px; color: var(--text-2); }
     .benefit-metric {
       font-family: var(--mono);
-      font-size: 13px;
+      font-size: 11px;
       color: var(--green);
       text-align: right;
-      white-space: nowrap;
+      max-width: 190px;
     }
 
     @media (max-width: 500px) {

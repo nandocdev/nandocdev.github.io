@@ -1,3 +1,5 @@
+const DEFAULT_WHATSAPP_HREF = 'https://wa.me/50764879448';
+
 const siteConfig = (() => {
   const configNode = document.getElementById('site-config');
 
@@ -17,18 +19,25 @@ const sendAnalyticsEvent = (eventName, params = {}) => {
 };
 
 const buildWhatsAppUrl = (message) => {
-  const phone = siteConfig?.contact?.whatsappPhone;
-  const defaultMessage = siteConfig?.contact?.defaultMessage || '';
-  const finalMessage = message || defaultMessage;
+  const phone = String(siteConfig?.contact?.whatsappPhone || '').replace(/\D/g, '');
+  const defaultMessage = String(siteConfig?.contact?.defaultMessage || '');
+  const finalMessage = String(message || defaultMessage).trim().slice(0, 500);
 
-  if (!phone) return 'https://wa.me/';
+  if (!phone) {
+    console.warn('WhatsApp no configurado; se usa el fallback por defecto.');
+    return DEFAULT_WHATSAPP_HREF;
+  }
 
-  return `https://wa.me/${phone}?text=${encodeURIComponent(finalMessage)}`;
+  const url = new URL(`https://wa.me/${phone}`);
+  if (finalMessage) url.searchParams.set('text', finalMessage);
+
+  return url.toString();
 };
 
 const hydrateWhatsAppLinks = () => {
   document.querySelectorAll('[data-whatsapp-link]').forEach((link) => {
-    link.href = buildWhatsAppUrl(link.dataset.message);
+    const fallbackHref = link.getAttribute('href') || DEFAULT_WHATSAPP_HREF;
+    link.href = buildWhatsAppUrl(link.dataset.message) || fallbackHref;
   });
 };
 

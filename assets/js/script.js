@@ -1,4 +1,6 @@
 const DEFAULT_WHATSAPP_HREF = 'https://wa.me/50764879448';
+const SECTION_VIEW_THRESHOLD = 0.45;
+const SCROLL_DEPTH_CHECKPOINTS = [25, 50, 75, 100];
 
 const siteConfig = (() => {
   const configNode = document.getElementById('site-config');
@@ -58,7 +60,7 @@ const trackSectionViews = () => {
   const trackedSections = new Set();
   const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
-      if (!entry.isIntersecting || entry.intersectionRatio < 0.45) return;
+      if (!entry.isIntersecting || entry.intersectionRatio < SECTION_VIEW_THRESHOLD) return;
 
       const { trackSection, sectionName, funnelStage } = entry.target.dataset;
       if (!trackSection || trackedSections.has(trackSection)) return;
@@ -73,7 +75,7 @@ const trackSectionViews = () => {
       sectionObserver.unobserve(entry.target);
     });
   }, {
-    threshold: [0.45]
+    threshold: [SECTION_VIEW_THRESHOLD]
   });
 
   document.querySelectorAll('[data-track-section]').forEach((section) => {
@@ -82,7 +84,6 @@ const trackSectionViews = () => {
 };
 
 const trackScrollDepth = () => {
-  const checkpoints = [25, 50, 75, 100];
   const triggered = new Set();
 
   const emitDepth = () => {
@@ -91,7 +92,7 @@ const trackScrollDepth = () => {
 
     const progress = Math.round((window.scrollY / scrollableHeight) * 100);
 
-    checkpoints.forEach((checkpoint) => {
+    SCROLL_DEPTH_CHECKPOINTS.forEach((checkpoint) => {
       if (progress < checkpoint || triggered.has(checkpoint)) return;
 
       triggered.add(checkpoint);

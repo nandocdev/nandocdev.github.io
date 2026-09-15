@@ -137,7 +137,49 @@ const navSectionObserver = new IntersectionObserver((entries) => {
 
 sections.forEach((section) => navSectionObserver.observe(section));
 
+// Theme Toggle — Light mode default, Dark mode optional
+const initThemeToggle = () => {
+  const themeToggleBtn = document.getElementById('theme-toggle');
+
+  const getPreferredTheme = () => {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') return saved;
+    return 'light'; // Default is light mode
+  };
+
+  const setTheme = (theme) => {
+    if (theme === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      document.documentElement.classList.add('dark');
+      if (themeToggleBtn) {
+        themeToggleBtn.setAttribute('aria-label', 'Cambiar a modo claro');
+        themeToggleBtn.setAttribute('title', 'Cambiar a modo claro');
+      }
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      document.documentElement.classList.remove('dark');
+      if (themeToggleBtn) {
+        themeToggleBtn.setAttribute('aria-label', 'Cambiar a modo oscuro');
+        themeToggleBtn.setAttribute('title', 'Cambiar a modo oscuro');
+      }
+    }
+  };
+
+  setTheme(getPreferredTheme());
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const nextTheme = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', nextTheme);
+      setTheme(nextTheme);
+      sendAnalyticsEvent('theme_toggle', { theme: nextTheme });
+    });
+  }
+};
+
 hydrateWhatsAppLinks();
 trackCtaClicks();
 trackSectionViews();
 trackScrollDepth();
+initThemeToggle();

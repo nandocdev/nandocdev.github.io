@@ -1,0 +1,8 @@
+{
+  "name": "nandoc.dev",
+  "description": "Automatización de procesos y software a medida para operaciones que necesitan menos retrabajo, mejor trazabilidad y más visibilidad.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

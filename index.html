@@ -182,12 +182,22 @@
       stroke-linejoin="round">
       <path d="M4 14.89 14 3.5l-2 10.39h8l-10 11.39 2-10.39Z"></path>
     </symbol>
+    <symbol id="icon-logo-mark" viewBox="0 0 100 100" fill="currentColor">
+      <path
+        d="M 18.5 27 C 18.5 25.6 19.6 24.5 21 24.5 L 35 24.5 C 35.8 24.5 36.6 24.9 37.1 25.5 L 64.5 59.5 L 64.5 47 C 64.5 46.4 64.2 45.8 63.8 45.4 L 60.8 42.4 C 60.3 41.9 60 41.2 60 40.5 L 60 25.5 C 60 24.7 60.5 23.9 61.3 23.5 L 75.8 16.5 C 77.1 15.9 78.5 16.8 78.5 18.2 L 78.5 73 C 78.5 74.4 77.4 75.5 76 75.5 L 62 75.5 C 61.2 75.5 60.4 75.1 59.9 74.5 L 32.5 40.5 L 32.5 53 C 32.5 53.6 32.8 54.2 33.2 54.6 L 36.2 57.6 C 36.7 58.1 37 58.8 37 59.5 L 37 74.5 C 37 75.3 36.5 76.1 35.7 76.5 L 21.2 83.5 C 19.9 84.1 18.5 83.2 18.5 81.8 Z"
+      />
+    </symbol>
   </svg>
 
   <!-- ── Nav ─────────────────────────────────────────── -->
   <nav id="main-nav">
     <div class="container nav-inner">
-      <a href="#" class="nav-logo" id="nav-logo">nandoc<span>.</span>dev</a>
+      <a href="#" class="nav-logo" id="nav-logo" aria-label="nandoc.dev">
+        <svg class="nav-logo-mark" viewBox="0 0 100 100" aria-hidden="true">
+          <use href="#icon-logo-mark"></use>
+        </svg>
+        <span class="nav-logo-text">nandoc<span>.</span>dev</span>
+      </a>
       <ul class="nav-links">
         <li><a href="#solucion">Solución</a></li>
         <li><a href="#casos">Casos de uso</a></li>
@@ -259,7 +269,12 @@
             <div class="dot dot-r"></div>
             <div class="dot dot-y"></div>
             <div class="dot dot-g"></div>
-            <div class="dash-tab">operacion.centralizada</div>
+            <div class="dash-tab">
+              <svg class="dash-logo-icon" viewBox="0 0 100 100" aria-hidden="true">
+                <use href="#icon-logo-mark"></use>
+              </svg>
+              operacion.centralizada
+            </div>
           </div>
           <div class="dash-body">
             <div class="kpi-row">
@@ -660,7 +675,12 @@
   <!-- ── Footer ────────────────────────────────────────── -->
   <footer id="main-footer">
     <div class="container footer-inner">
-      <a href="#" class="footer-logo">nandoc<span>.</span>dev</a>
+      <a href="#" class="footer-logo" id="footer-logo" aria-label="nandoc.dev">
+        <svg class="nav-logo-mark" viewBox="0 0 100 100" aria-hidden="true">
+          <use href="#icon-logo-mark"></use>
+        </svg>
+        <span>nandoc<span>.</span>dev</span>
+      </a>
       <span class="footer-copy">Automatización &amp; Desarrollo Web a Medida · Panamá</span>
     </div>
   </footer>

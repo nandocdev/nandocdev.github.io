@@ -55,6 +55,11 @@
   --accent-warn-dim: rgba(225, 29, 72, 0.06);
   --accent-warn-border: rgba(225, 29, 72, 0.18);
 
+  --logo-color: #1877f2;      /* Electric tech blue from uploaded logo */
+  --logo-gradient-start: #1877f2;
+  --logo-gradient-end: #0284c7;
+  --logo-text: #0f172a;
+
   --nav-bg: rgba(255, 255, 255, 0.88);
   --hero-grid: rgba(15, 23, 42, 0.04);
   --hero-glow-color: rgba(5, 150, 105, 0.07);
@@ -102,6 +107,11 @@ html.dark {
   --accent-warn: #fb7185;     /* Rose 400 */
   --accent-warn-dim: rgba(251, 113, 133, 0.12);
   --accent-warn-border: rgba(251, 113, 133, 0.22);
+
+  --logo-color: #38bdf8;      /* Vibrant glowing cyan/sky for dark contrast */
+  --logo-gradient-start: #38bdf8;
+  --logo-gradient-end: #60a5fa;
+  --logo-text: #f8fafc;
 
   --nav-bg: rgba(11, 15, 23, 0.88);
   --hero-grid: rgba(255, 255, 255, 0.035);
@@ -332,11 +342,38 @@ nav {
   letter-spacing: -0.02em;
   display: inline-flex;
   align-items: center;
-  gap: 2px;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.nav-logo:hover {
+  opacity: 0.92;
+}
+
+.nav-logo-mark {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  color: var(--logo-color);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+}
+
+.nav-logo:hover .nav-logo-mark {
+  transform: scale(1.08) rotate(-2deg);
 }
 
 .nav-logo span {
-  color: var(--green);
+  color: var(--logo-color);
+}
+
+.dash-logo-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  color: var(--logo-color);
+  display: inline-block;
+  vertical-align: -2px;
+  margin-right: 5px;
 }
 
 .nav-links {
@@ -1376,10 +1413,23 @@ footer {
   font-weight: 700;
   color: var(--text-1);
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+}
+
+.footer-logo:hover {
+  opacity: 0.92;
+}
+
+.footer-logo .nav-logo-mark {
+  width: 22px;
+  height: 22px;
 }
 
 .footer-logo span {
-  color: var(--green);
+  color: var(--logo-color);
 }
 
 .footer-copy {

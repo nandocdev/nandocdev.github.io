@@ -137,6 +137,155 @@ const navSectionObserver = new IntersectionObserver((entries) => {
 
 sections.forEach((section) => navSectionObserver.observe(section));
 
+// Language Management (i18n) — Spanish and English
+let currentLang = 'es';
+
+const getPreferredLanguage = () => {
+  try {
+    const saved = localStorage.getItem('lang');
+    if (saved === 'en' || saved === 'es') return saved;
+    const navLangs = navigator.languages || [navigator.language];
+    for (const l of navLangs) {
+      if (!l) continue;
+      const lower = l.toLowerCase();
+      if (lower.startsWith('en')) return 'en';
+      if (lower.startsWith('es')) return 'es';
+    }
+  } catch (e) {}
+  return 'es';
+};
+
+const getNestedValue = (obj, path) => {
+  if (!obj || !path) return null;
+  return path.split('.').reduce((acc, part) => (acc && acc[part] !== undefined ? acc[part] : null), obj);
+};
+
+const applyLanguage = (lang) => {
+  const dict = window.translations && window.translations[lang];
+  if (!dict) return;
+  currentLang = lang;
+
+  document.documentElement.setAttribute('lang', lang);
+
+  // Meta tags and document title
+  if (dict.meta) {
+    if (dict.meta.title) document.title = dict.meta.title;
+
+    const descMeta = document.querySelector('meta[name="description"]');
+    if (descMeta && dict.meta.description) descMeta.setAttribute('content', dict.meta.description);
+
+    const kwMeta = document.querySelector('meta[name="keywords"]');
+    if (kwMeta && dict.meta.keywords) kwMeta.setAttribute('content', dict.meta.keywords);
+
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle && dict.meta.og_title) ogTitle.setAttribute('content', dict.meta.og_title);
+
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    if (ogDesc && dict.meta.og_description) ogDesc.setAttribute('content', dict.meta.og_description);
+
+    const ogLocale = document.querySelector('meta[property="og:locale"]');
+    if (ogLocale && dict.meta.og_locale) ogLocale.setAttribute('content', dict.meta.og_locale);
+
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    if (twTitle && dict.meta.twitter_title) twTitle.setAttribute('content', dict.meta.twitter_title);
+
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
+    if (twDesc && dict.meta.twitter_description) twDesc.setAttribute('content', dict.meta.twitter_description);
+  }
+
+  // Update text elements
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.getAttribute('data-i18n');
+    const val = getNestedValue(dict, key);
+    if (val !== null && val !== undefined) {
+      el.textContent = val;
+    }
+  });
+
+  // Update HTML elements (with <em>, <br>, <strong>, etc.)
+  document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+    const key = el.getAttribute('data-i18n-html');
+    const val = getNestedValue(dict, key);
+    if (val !== null && val !== undefined) {
+      el.innerHTML = val;
+    }
+  });
+
+  // Update element attributes
+  document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+    const specs = el.getAttribute('data-i18n-attr').split(',');
+    specs.forEach((spec) => {
+      const parts = spec.trim().split(':');
+      if (parts.length === 2) {
+        const [attr, key] = parts;
+        const val = getNestedValue(dict, key);
+        if (val !== null && val !== undefined) {
+          el.setAttribute(attr, val);
+        }
+      }
+    });
+  });
+
+  // Update language toggle buttons active state
+  document.querySelectorAll('.lang-btn').forEach((btn) => {
+    const btnLang = btn.getAttribute('data-lang');
+    const isActive = btnLang === lang;
+    btn.classList.toggle('active', isActive);
+    btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+  });
+
+  // Update WhatsApp default message & re-hydrate links
+  if (dict.whatsapp && dict.whatsapp.default_message) {
+    if (siteConfig && siteConfig.contact) {
+      siteConfig.contact.defaultMessage = dict.whatsapp.default_message;
+    }
+    hydrateWhatsAppLinks();
+  }
+
+  // Update WhatsApp float aria-label
+  const floatWa = document.getElementById('btn-float-wa');
+  if (floatWa && dict.whatsapp && dict.whatsapp.float_aria) {
+    floatWa.setAttribute('aria-label', dict.whatsapp.float_aria);
+    floatWa.setAttribute('title', dict.whatsapp.float_aria);
+  }
+
+  // Update theme toggle labels for the current language
+  updateThemeToggleLabels();
+};
+
+const updateThemeToggleLabels = () => {
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const dict = window.translations && window.translations[currentLang];
+  if (!themeToggleBtn || !dict || !dict.nav) return;
+
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const label = isDark ? dict.nav.theme_to_light : dict.nav.theme_to_dark;
+  themeToggleBtn.setAttribute('aria-label', label);
+  themeToggleBtn.setAttribute('title', label);
+};
+
+const initLanguageToggle = () => {
+  const initialLang = getPreferredLanguage();
+  applyLanguage(initialLang);
+
+  document.querySelectorAll('.lang-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const selectedLang = btn.getAttribute('data-lang');
+      if (selectedLang && selectedLang !== currentLang) {
+        try {
+          localStorage.setItem('lang', selectedLang);
+        } catch (e) {}
+        const prev = currentLang;
+        applyLanguage(selectedLang);
+        sendAnalyticsEvent('language_change', {
+          language: selectedLang,
+          previous: prev
+        });
+      }
+    });
+  });
+};
+
 // Theme Toggle — Light mode default, Dark mode optional
 const initThemeToggle = () => {
   const themeToggleBtn = document.getElementById('theme-toggle');
@@ -151,18 +300,11 @@ const initThemeToggle = () => {
     if (theme === 'dark') {
       document.documentElement.setAttribute('data-theme', 'dark');
       document.documentElement.classList.add('dark');
-      if (themeToggleBtn) {
-        themeToggleBtn.setAttribute('aria-label', 'Cambiar a modo claro');
-        themeToggleBtn.setAttribute('title', 'Cambiar a modo claro');
-      }
     } else {
       document.documentElement.setAttribute('data-theme', 'light');
       document.documentElement.classList.remove('dark');
-      if (themeToggleBtn) {
-        themeToggleBtn.setAttribute('aria-label', 'Cambiar a modo oscuro');
-        themeToggleBtn.setAttribute('title', 'Cambiar a modo oscuro');
-      }
     }
+    updateThemeToggleLabels();
   };
 
   setTheme(getPreferredTheme());
@@ -183,3 +325,5 @@ trackCtaClicks();
 trackSectionViews();
 trackScrollDepth();
 initThemeToggle();
+initLanguageToggle();
+

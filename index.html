@@ -29,7 +29,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/img/icons/favicon.svg" />
   <link rel="stylesheet" href="assets/css/style.css" />
 
-  <!-- Script inline para prevenir destello de tema (Por defecto modo claro, modo oscuro opcional) -->
+  <!-- Script inline para prevenir destello de tema y selección de idioma -->
   <script>
     (function() {
       try {
@@ -40,6 +40,21 @@
         } else {
           document.documentElement.setAttribute('data-theme', 'light');
           document.documentElement.classList.remove('dark');
+        }
+
+        var lang = localStorage.getItem('lang');
+        if (!lang) {
+          var navLangs = navigator.languages || [navigator.language];
+          for (var i = 0; i < navLangs.length; i++) {
+            var l = navLangs[i];
+            if (!l) continue;
+            var lower = l.toLowerCase();
+            if (lower.indexOf('en') === 0) { lang = 'en'; break; }
+            if (lower.indexOf('es') === 0) { lang = 'es'; break; }
+          }
+        }
+        if (lang) {
+          document.documentElement.setAttribute('lang', lang);
         }
       } catch (e) {}
     })();
@@ -199,12 +214,17 @@
         <span class="nav-logo-text">nandoc<span>.</span>dev</span>
       </a>
       <ul class="nav-links">
-        <li><a href="#solucion">Solución</a></li>
-        <li><a href="#casos">Casos de uso</a></li>
-        <li><a href="#diferenciador">Diferenciador</a></li>
-        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#solucion" data-i18n="nav.solution">Solución</a></li>
+        <li><a href="#casos" data-i18n="nav.cases">Casos de uso</a></li>
+        <li><a href="#diferenciador" data-i18n="nav.differentiator">Diferenciador</a></li>
+        <li><a href="#proceso" data-i18n="nav.process">Proceso</a></li>
       </ul>
       <div class="nav-cta">
+        <div class="lang-switch" id="lang-switch" role="group" aria-label="Selector de idioma" data-i18n-attr="aria-label:nav.lang_label">
+          <button type="button" class="lang-btn active" data-lang="es" aria-label="Español" aria-pressed="true">ES</button>
+          <span class="lang-divider" aria-hidden="true">/</span>
+          <button type="button" class="lang-btn" data-lang="en" aria-label="English" aria-pressed="false">EN</button>
+        </div>
         <button id="theme-toggle" class="theme-toggle-btn" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar tema">
           <svg class="theme-icon icon-sun"><use href="#icon-sun"></use></svg>
           <svg class="theme-icon icon-moon"><use href="#icon-moon"></use></svg>
@@ -214,7 +234,7 @@
           <svg class="btn-icon">
             <use href="#icon-whatsapp"></use>
           </svg>
-          Escríbeme
+          <span data-i18n="nav.cta">Escríbeme</span>
         </a>
       </div>
     </div>
@@ -226,11 +246,11 @@
     <div class="hero-glow"></div>
     <div class="container hero-inner">
       <div>
-        <div class="hero-eyebrow">Software que resuelve problemas reales</div>
-        <h1 class="hero-headline">
+        <div class="hero-eyebrow" data-i18n="hero.eyebrow">Software que resuelve problemas reales</div>
+        <h1 class="hero-headline" data-i18n-html="hero.headline_html">
           Potencia tu negocio con tecnología que <em>sí genera resultados</em>
         </h1>
-        <p class="hero-sub">
+        <p class="hero-sub" data-i18n="hero.sub">
           Automatiza procesos, reduce errores y ahorra tiempo con soluciones web construidas exactamente para tu
           operación.
         </p>
@@ -240,30 +260,30 @@
             <svg class="btn-icon">
               <use href="#icon-whatsapp"></use>
             </svg>
-            Escríbeme por WhatsApp
+            <span data-i18n="hero.cta_primary">Escríbeme por WhatsApp</span>
           </a>
           <a href="#solucion" class="btn btn-secondary" id="btn-hero-explore" data-track="cta" data-location="hero_secondary"
-            data-channel="internal" data-intent="explore_solution">Ver cómo funciona</a>
+            data-channel="internal" data-intent="explore_solution" data-i18n="hero.cta_secondary">Ver cómo funciona</a>
         </div>
         <div class="hero-social-proof">
           <div class="proof-item">
             <span class="proof-num">10+</span>
-            <span class="proof-label">años entregando software en producción</span>
+            <span class="proof-label" data-i18n="hero.proof_1_label">años entregando software en producción</span>
           </div>
           <div class="proof-item">
-            <span class="proof-num">Operación crítica</span>
-            <span class="proof-label">pedidos, asistencia, aprobaciones y reportes</span>
+            <span class="proof-num" data-i18n="hero.proof_2_num">Operación crítica</span>
+            <span class="proof-label" data-i18n="hero.proof_2_label">pedidos, asistencia, aprobaciones y reportes</span>
           </div>
           <div class="proof-item">
-            <span class="proof-num">Integración real</span>
-            <span class="proof-label">APIs, dashboards y flujos automatizados</span>
+            <span class="proof-num" data-i18n="hero.proof_3_num">Integración real</span>
+            <span class="proof-label" data-i18n="hero.proof_3_label">APIs, dashboards y flujos automatizados</span>
           </div>
         </div>
       </div>
 
       <!-- Dashboard Example -->
       <div class="dashboard-wrap" id="dashboard-preview">
-        <p class="dashboard-note">Ejemplo de tablero para una operación con aprobaciones, seguimiento y alertas.</p>
+        <p class="dashboard-note" data-i18n="dashboard.note">Ejemplo de tablero para una operación con aprobaciones, seguimiento y alertas.</p>
         <div class="dashboard">
           <div class="dash-header">
             <div class="dot dot-r"></div>
@@ -273,29 +293,29 @@
               <svg class="dash-logo-icon" viewBox="0 0 100 100" aria-hidden="true">
                 <use href="#icon-logo-mark"></use>
               </svg>
-              operacion.centralizada
+              <span data-i18n="dashboard.tab">operacion.centralizada</span>
             </div>
           </div>
           <div class="dash-body">
             <div class="kpi-row">
               <div class="kpi" id="kpi-respuesta">
-                <div class="kpi-label">Respuesta</div>
+                <div class="kpi-label" data-i18n="dashboard.kpi_1_label">Respuesta</div>
                 <div class="kpi-value">24h → 2h</div>
-                <div class="kpi-delta">menos espera en cotizaciones y aprobaciones</div>
+                <div class="kpi-delta" data-i18n="dashboard.kpi_1_delta">menos espera en cotizaciones y aprobaciones</div>
               </div>
               <div class="kpi" id="kpi-trazabilidad">
-                <div class="kpi-label">Trazabilidad</div>
-                <div class="kpi-value">1 panel</div>
-                <div class="kpi-delta">pedidos, estados y responsables en un solo lugar</div>
+                <div class="kpi-label" data-i18n="dashboard.kpi_2_label">Trazabilidad</div>
+                <div class="kpi-value" data-i18n="dashboard.kpi_2_val">1 panel</div>
+                <div class="kpi-delta" data-i18n="dashboard.kpi_2_delta">pedidos, estados y responsables en un solo lugar</div>
               </div>
               <div class="kpi" id="kpi-alertas">
-                <div class="kpi-label">Alertas</div>
-                <div class="kpi-value">Automáticas</div>
-                <div class="kpi-delta">sin perseguir tareas por WhatsApp o Excel</div>
+                <div class="kpi-label" data-i18n="dashboard.kpi_3_label">Alertas</div>
+                <div class="kpi-value" data-i18n="dashboard.kpi_3_val">Automáticas</div>
+                <div class="kpi-delta" data-i18n="dashboard.kpi_3_delta">sin perseguir tareas por WhatsApp o Excel</div>
               </div>
             </div>
             <div class="chart-area">
-              <div class="chart-title">Flujo operativo digitalizado — últimos 7 días</div>
+              <div class="chart-title" data-i18n="dashboard.chart_title">Flujo operativo digitalizado — últimos 7 días</div>
               <div class="chart-bars">
                 <div class="bar"></div>
                 <div class="bar"></div>
@@ -309,11 +329,11 @@
             <div class="activity-row">
               <div class="activity-item">
                 <div class="activity-dot"></div>
-                <div class="activity-text"><strong>Cotización #248</strong> aprobada y enviada a operaciones</div>
+                <div class="activity-text" data-i18n-html="dashboard.activity_1_html"><strong>Cotización #248</strong> aprobada y enviada a operaciones</div>
               </div>
               <div class="activity-item">
                 <div class="activity-dot"></div>
-                <div class="activity-text"><strong>Cliente</strong> notificado y pedido asignado a bodega</div>
+                <div class="activity-text" data-i18n-html="dashboard.activity_2_html"><strong>Cliente</strong> notificado y pedido asignado a bodega</div>
               </div>
             </div>
           </div>
@@ -328,9 +348,9 @@
   <section id="problema" data-track-section="problema" data-section-name="Problema" data-funnel-stage="awareness">
     <div class="container">
       <div class="fade-up">
-        <div class="tag">El problema real</div>
-        <h2 class="section-title">Tu operación corre en parches.<br>Y lo sabes.</h2>
-        <p class="section-sub">Cada proceso manual que no has digitalizado es tiempo perdido, un error esperando pasar,
+        <div class="tag" data-i18n="problema.tag">El problema real</div>
+        <h2 class="section-title" data-i18n-html="problema.title_html">Tu operación corre en parches.<br>Y lo sabes.</h2>
+        <p class="section-sub" data-i18n="problema.sub">Cada proceso manual que no has digitalizado es tiempo perdido, un error esperando pasar,
           y un cuello de botella que no va a desaparecer solo.</p>
       </div>
       <div class="pain-grid fade-up" style="transition-delay:0.1s">
@@ -338,37 +358,37 @@
           <div class="pain-icon"><svg>
               <use href="#icon-database"></use>
             </svg></div>
-          <div class="pain-title">¿Usas Excel, papel o WhatsApp desordenado?</div>
-          <p class="pain-desc">Tus datos viven en silos. Nadie tiene la versión correcta. Las decisiones se toman con
+          <div class="pain-title" data-i18n="problema.card_1_title">¿Usas Excel, papel o WhatsApp desordenado?</div>
+          <p class="pain-desc" data-i18n="problema.card_1_desc">Tus datos viven en silos. Nadie tiene la versión correcta. Las decisiones se toman con
             información desactualizada o incompleta.</p>
         </div>
         <div class="pain-card" id="pain-manual">
           <div class="pain-icon"><svg>
               <use href="#icon-repeat"></use>
             </svg></div>
-          <div class="pain-title">Procesos manuales que no escalan</div>
-          <p class="pain-desc">Para crecer, contratas más personas que hacen lo mismo. El costo operativo sube, la
+          <div class="pain-title" data-i18n="problema.card_2_title">Procesos manuales que no escalan</div>
+          <p class="pain-desc" data-i18n="problema.card_2_desc">Para crecer, contratas más personas que hacen lo mismo. El costo operativo sube, la
             calidad no. Eso no es crecimiento, es inflación de personal.</p>
         </div>
         <div class="pain-card" id="pain-errors">
           <div class="pain-icon"><svg>
               <use href="#icon-alert"></use>
             </svg></div>
-          <div class="pain-title">Errores humanos constantes</div>
-          <p class="pain-desc">Datos duplicados, registros perdidos, cálculos incorrectos. Cada error manual tiene un
+          <div class="pain-title" data-i18n="problema.card_3_title">Errores humanos constantes</div>
+          <p class="pain-desc" data-i18n="problema.card_3_desc">Datos duplicados, registros perdidos, cálculos incorrectos. Cada error manual tiene un
             costo real: tiempo de corrección, pérdida de confianza, fricción con clientes.</p>
         </div>
         <div class="pain-card" id="pain-visibility">
           <div class="pain-icon"><svg>
               <use href="#icon-activity"></use>
             </svg></div>
-          <div class="pain-title">Falta de visibilidad en tiempo real</div>
-          <p class="pain-desc">Tomas decisiones a ciegas. No sabes qué está pasando ahora en tu operación. Los reportes
+          <div class="pain-title" data-i18n="problema.card_4_title">Falta de visibilidad en tiempo real</div>
+          <p class="pain-desc" data-i18n="problema.card_4_desc">Tomas decisiones a ciegas. No sabes qué está pasando ahora en tu operación. Los reportes
             llegan tarde, cuando ya no sirven para reaccionar.</p>
         </div>
       </div>
       <div class="pain-footer fade-up" style="transition-delay:0.2s">
-        <p>Eso no escala. <span>Eso te frena.</span></p>
+        <p data-i18n-html="problema.footer_html">Eso no escala. <span>Eso te frena.</span></p>
       </div>
     </div>
   </section>
@@ -379,9 +399,9 @@
   <section id="solucion" data-track-section="solucion" data-section-name="Solución" data-funnel-stage="consideration">
     <div class="container">
       <div class="fade-up">
-        <div class="tag">La solución</div>
-        <h2 class="section-title">Software hecho para tu operación.<br>No para la demo.</h2>
-        <p class="section-sub">Sin buzzwords. Sin arquitecturas de NASA para un problema simple. Software que hace lo
+        <div class="tag" data-i18n="solucion.tag">La solución</div>
+        <h2 class="section-title" data-i18n-html="solucion.title_html">Software hecho para tu operación.<br>No para la demo.</h2>
+        <p class="section-sub" data-i18n="solucion.sub">Sin buzzwords. Sin arquitecturas de NASA para un problema simple. Software que hace lo
           que necesita hacer, rápido y confiable.</p>
       </div>
       <div class="sol-grid fade-up" style="transition-delay:0.1s">
@@ -389,32 +409,32 @@
           <div class="sol-icon"><svg>
               <use href="#icon-bot"></use>
             </svg></div>
-          <div class="sol-title">Automatización de tareas repetitivas</div>
-          <p class="sol-desc">Identifica los procesos que tu equipo hace igual todos los días y los convertimos en
+          <div class="sol-title" data-i18n="solucion.card_1_title">Automatización de tareas repetitivas</div>
+          <p class="sol-desc" data-i18n="solucion.card_1_desc">Identifica los procesos que tu equipo hace igual todos los días y los convertimos en
             flujos automáticos. El sistema trabaja, tu equipo piensa.</p>
         </div>
         <div class="sol-card" id="sol-digitization">
           <div class="sol-icon"><svg>
               <use href="#icon-smartphone"></use>
             </svg></div>
-          <div class="sol-title">Digitalización de procesos operativos</div>
-          <p class="sol-desc">Formularios en papel, registros en WhatsApp, hojas de cálculo compartidas — todo migra a
+          <div class="sol-title" data-i18n="solucion.card_2_title">Digitalización de procesos operativos</div>
+          <p class="sol-desc" data-i18n="solucion.card_2_desc">Formularios en papel, registros en WhatsApp, hojas de cálculo compartidas — todo migra a
             un sistema centralizado, con historial, permisos y auditoría.</p>
         </div>
         <div class="sol-card" id="sol-centralization">
           <div class="sol-icon"><svg>
               <use href="#icon-layers"></use>
             </svg></div>
-          <div class="sol-title">Centralización de información</div>
-          <p class="sol-desc">Una sola fuente de verdad para toda tu operación. Todos ven lo mismo, en tiempo real, con
+          <div class="sol-title" data-i18n="solucion.card_3_title">Centralización de información</div>
+          <p class="sol-desc" data-i18n="solucion.card_3_desc">Una sola fuente de verdad para toda tu operación. Todos ven lo mismo, en tiempo real, con
             los permisos correctos.</p>
         </div>
         <div class="sol-card" id="sol-integrations">
           <div class="sol-icon"><svg>
               <use href="#icon-zap"></use>
             </svg></div>
-          <div class="sol-title">Integraciones con sistemas existentes</div>
-          <p class="sol-desc">No tiramos lo que ya funciona. Conectamos tus herramientas actuales vía API: tu CRM,
+          <div class="sol-title" data-i18n="solucion.card_4_title">Integraciones con sistemas existentes</div>
+          <p class="sol-desc" data-i18n="solucion.card_4_desc">No tiramos lo que ya funciona. Conectamos tus herramientas actuales vía API: tu CRM,
             sistema contable, plataformas de pago, notificaciones.</p>
         </div>
       </div>
@@ -427,46 +447,46 @@
   <section id="beneficios" data-track-section="beneficios" data-section-name="Beneficios" data-funnel-stage="consideration">
     <div class="container">
       <div class="fade-up">
-        <div class="tag">Impacto en negocio</div>
-        <h2 class="section-title">Lo que gana tu empresa.</h2>
-        <p class="section-sub">No hablamos de features. Hablamos de resultados operativos medibles.</p>
+        <div class="tag" data-i18n="beneficios.tag">Impacto en negocio</div>
+        <h2 class="section-title" data-i18n="beneficios.title">Lo que gana tu empresa.</h2>
+        <p class="section-sub" data-i18n="beneficios.sub">No hablamos de features. Hablamos de resultados operativos medibles.</p>
       </div>
       <div class="benefits-list fade-up" style="transition-delay:0.1s">
         <div class="benefit-row" id="benefit-1">
           <span class="benefit-num">01</span>
           <div class="benefit-text">
-            <span class="benefit-title">Ahorro de tiempo operativo</span>
-            <span class="benefit-sub">Eliminas horas de trabajo manual repetitivo. Tu equipo se enfoca en lo que agrega
+            <span class="benefit-title" data-i18n="beneficios.b1_title">Ahorro de tiempo operativo</span>
+            <span class="benefit-sub" data-i18n="beneficios.b1_sub">Eliminas horas de trabajo manual repetitivo. Tu equipo se enfoca en lo que agrega
               valor.</span>
           </div>
-          <span class="benefit-metric">menos tareas repetitivas y más foco operativo</span>
+          <span class="benefit-metric" data-i18n="beneficios.b1_metric">menos tareas repetitivas y más foco operativo</span>
         </div>
         <div class="benefit-row" id="benefit-2">
           <span class="benefit-num">02</span>
           <div class="benefit-text">
-            <span class="benefit-title">Reducción de errores</span>
-            <span class="benefit-sub">Validaciones automáticas, flujos controlados. Los errores humanos se reducen a la
+            <span class="benefit-title" data-i18n="beneficios.b2_title">Reducción de errores</span>
+            <span class="benefit-sub" data-i18n="beneficios.b2_sub">Validaciones automáticas, flujos controlados. Los errores humanos se reducen a la
               mínima expresión.</span>
           </div>
-          <span class="benefit-metric">menos retrabajo, menos pérdida de contexto</span>
+          <span class="benefit-metric" data-i18n="beneficios.b2_metric">menos retrabajo, menos pérdida de contexto</span>
         </div>
         <div class="benefit-row" id="benefit-3">
           <span class="benefit-num">03</span>
           <div class="benefit-text">
-            <span class="benefit-title">Mejores decisiones con datos reales</span>
-            <span class="benefit-sub">Dashboards en tiempo real. Ves lo que importa, cuando importa, sin esperar
+            <span class="benefit-title" data-i18n="beneficios.b3_title">Mejores decisiones con datos reales</span>
+            <span class="benefit-sub" data-i18n="beneficios.b3_sub">Dashboards en tiempo real. Ves lo que importa, cuando importa, sin esperar
               reportes.</span>
           </div>
-          <span class="benefit-metric">datos disponibles cuando toca decidir</span>
+          <span class="benefit-metric" data-i18n="beneficios.b3_metric">datos disponibles cuando toca decidir</span>
         </div>
         <div class="benefit-row" id="benefit-4">
           <span class="benefit-num">04</span>
           <div class="benefit-text">
-            <span class="benefit-title">Escalabilidad sin contratar más personal</span>
-            <span class="benefit-sub">Duplicas el volumen de operaciones sin duplicar el equipo. El sistema absorbe el
+            <span class="benefit-title" data-i18n="beneficios.b4_title">Escalabilidad sin contratar más personal</span>
+            <span class="benefit-sub" data-i18n="beneficios.b4_sub">Duplicas el volumen de operaciones sin duplicar el equipo. El sistema absorbe el
               crecimiento.</span>
           </div>
-          <span class="benefit-metric">más capacidad sin multiplicar el caos</span>
+          <span class="benefit-metric" data-i18n="beneficios.b4_metric">más capacidad sin multiplicar el caos</span>
         </div>
       </div>
     </div>
@@ -478,76 +498,76 @@
   <section id="casos" data-track-section="casos" data-section-name="Casos de uso" data-funnel-stage="evaluation">
     <div class="container">
       <div class="fade-up">
-        <div class="tag">Casos de uso</div>
-        <h2 class="section-title">Qué se puede construir.</h2>
-        <p class="section-sub">Ejemplos concretos, no genéricos. Proyectos que ya existen o que puedo construir para ti.
+        <div class="tag" data-i18n="casos.tag">Casos de uso</div>
+        <h2 class="section-title" data-i18n="casos.title">Qué se puede construir.</h2>
+        <p class="section-sub" data-i18n="casos.sub">Ejemplos concretos, no genéricos. Proyectos que ya existen o que puedo construir para ti.
         </p>
       </div>
       <div class="cases-grid fade-up" style="transition-delay:0.1s">
         <div class="case-card" id="case-1">
           <div class="case-num">001</div>
-          <div class="case-title">Cotización → aprobación → orden de trabajo</div>
-          <p class="case-desc">Un flujo completo para ventas y operaciones: cotizas, apruebas, asignas responsables y
+          <div class="case-title" data-i18n="casos.c1_title">Cotización → aprobación → orden de trabajo</div>
+          <p class="case-desc" data-i18n="casos.c1_desc">Un flujo completo para ventas y operaciones: cotizas, apruebas, asignas responsables y
             dejas trazabilidad sin perseguir versiones por chat o correo.</p>
           <div class="case-tags">
-            <span class="case-tag">Estados</span>
-            <span class="case-tag">Auditoría</span>
-            <span class="case-tag">Notificaciones</span>
+            <span class="case-tag" data-i18n="casos.c1_tag1">Estados</span>
+            <span class="case-tag" data-i18n="casos.c1_tag2">Auditoría</span>
+            <span class="case-tag" data-i18n="casos.c1_tag3">Notificaciones</span>
           </div>
         </div>
         <div class="case-card" id="case-2">
           <div class="case-num">002</div>
-          <div class="case-title">Asistencia, turnos y novedades de campo</div>
-          <p class="case-desc">Registro digital de entrada y salida, cambios de turno, incidencias y alertas para
+          <div class="case-title" data-i18n="casos.c2_title">Asistencia, turnos y novedades de campo</div>
+          <p class="case-desc" data-i18n="casos.c2_desc">Registro digital de entrada y salida, cambios de turno, incidencias y alertas para
             supervisores. Todo queda centralizado y listo para reportar.</p>
           <div class="case-tags">
-            <span class="case-tag">QR / Geoloc</span>
-            <span class="case-tag">Notificaciones</span>
-            <span class="case-tag">Reportes</span>
+            <span class="case-tag" data-i18n="casos.c2_tag1">QR / Geoloc</span>
+            <span class="case-tag" data-i18n="casos.c2_tag2">Notificaciones</span>
+            <span class="case-tag" data-i18n="casos.c2_tag3">Reportes</span>
           </div>
         </div>
         <div class="case-card" id="case-3">
           <div class="case-num">003</div>
-          <div class="case-title">Panel operativo para pedidos y despacho</div>
-          <p class="case-desc">Pedidos, stock, despacho y entregas visibles en un solo panel para que operaciones,
+          <div class="case-title" data-i18n="casos.c3_title">Panel operativo para pedidos y despacho</div>
+          <p class="case-desc" data-i18n="casos.c3_desc">Pedidos, stock, despacho y entregas visibles en un solo panel para que operaciones,
             soporte y gerencia vean lo mismo sin pedir reportes manuales.</p>
           <div class="case-tags">
-            <span class="case-tag">Dashboards</span>
-            <span class="case-tag">Alertas</span>
-            <span class="case-tag">Multi-rol</span>
+            <span class="case-tag" data-i18n="casos.c3_tag1">Dashboards</span>
+            <span class="case-tag" data-i18n="casos.c3_tag2">Alertas</span>
+            <span class="case-tag" data-i18n="casos.c3_tag3">Multi-rol</span>
           </div>
         </div>
         <div class="case-card" id="case-4">
           <div class="case-num">004</div>
-          <div class="case-title">Aprobaciones internas sin cuellos de botella</div>
-          <p class="case-desc">Solicitudes de compra, vacaciones, descuentos o excepciones con reglas claras, trazabilidad
+          <div class="case-title" data-i18n="casos.c4_title">Aprobaciones internas sin cuellos de botella</div>
+          <p class="case-desc" data-i18n="casos.c4_desc">Solicitudes de compra, vacaciones, descuentos o excepciones con reglas claras, trazabilidad
             y recordatorios automáticos hasta cerrar cada caso.</p>
           <div class="case-tags">
-            <span class="case-tag">Workflows</span>
-            <span class="case-tag">Colas</span>
-            <span class="case-tag">Email/SMS</span>
+            <span class="case-tag" data-i18n="casos.c4_tag1">Workflows</span>
+            <span class="case-tag" data-i18n="casos.c4_tag2">Colas</span>
+            <span class="case-tag" data-i18n="casos.c4_tag3">Email/SMS</span>
           </div>
         </div>
         <div class="case-card" id="case-5">
           <div class="case-num">005</div>
-          <div class="case-title">Integración entre ventas, facturación y bodega</div>
-          <p class="case-desc">Conecta formularios, e-commerce, CRM, ERP o facturación para evitar doble digitación,
+          <div class="case-title" data-i18n="casos.c5_title">Integración entre ventas, facturación y bodega</div>
+          <p class="case-desc" data-i18n="casos.c5_desc">Conecta formularios, e-commerce, CRM, ERP o facturación para evitar doble digitación,
             errores de inventario y retrasos entre equipos.</p>
           <div class="case-tags">
-            <span class="case-tag">REST APIs</span>
-            <span class="case-tag">Webhooks</span>
-            <span class="case-tag">ETL</span>
+            <span class="case-tag" data-i18n="casos.c5_tag1">REST APIs</span>
+            <span class="case-tag" data-i18n="casos.c5_tag2">Webhooks</span>
+            <span class="case-tag" data-i18n="casos.c5_tag3">ETL</span>
           </div>
         </div>
         <div class="case-card" id="case-6">
           <div class="case-num">006</div>
-          <div class="case-title">Portal para clientes con historial y autoservicio</div>
-          <p class="case-desc">Un espacio donde tus clientes consultan estados, descargan documentos, crean solicitudes y
+          <div class="case-title" data-i18n="casos.c6_title">Portal para clientes con historial y autoservicio</div>
+          <p class="case-desc" data-i18n="casos.c6_desc">Un espacio donde tus clientes consultan estados, descargan documentos, crean solicitudes y
             reciben actualizaciones sin depender de seguimiento manual.</p>
           <div class="case-tags">
-            <span class="case-tag">Portal</span>
-            <span class="case-tag">Permisos</span>
-            <span class="case-tag">Autoservicio</span>
+            <span class="case-tag" data-i18n="casos.c6_tag1">Portal</span>
+            <span class="case-tag" data-i18n="casos.c6_tag2">Permisos</span>
+            <span class="case-tag" data-i18n="casos.c6_tag3">Autoservicio</span>
           </div>
         </div>
       </div>
@@ -561,38 +581,38 @@
     <div class="container">
       <div class="diff-inner">
         <div class="fade-up">
-          <div class="tag">Por qué no somos lo mismo</div>
-          <h2 class="section-title">Sin humo.<br>Sin microservicios<br>innecesarios.</h2>
+          <div class="tag" data-i18n="diferenciador.tag">Por qué no somos lo mismo</div>
+          <h2 class="section-title" data-i18n-html="diferenciador.title_html">Sin humo.<br>Sin microservicios<br>innecesarios.</h2>
           <div class="diff-vs">
             <div class="diff-row">
-              <div class="diff-bad">Páginas web genéricas</div>
+              <div class="diff-bad" data-i18n="diferenciador.row1_bad">Páginas web genéricas</div>
               <div class="diff-arrow">→</div>
-              <div class="diff-good">Herramientas que resuelven problemas reales</div>
+              <div class="diff-good" data-i18n="diferenciador.row1_good">Herramientas que resuelven problemas reales</div>
             </div>
             <div class="diff-row">
-              <div class="diff-bad">Arquitecturas de 18 capas</div>
+              <div class="diff-bad" data-i18n="diferenciador.row2_bad">Arquitecturas de 18 capas</div>
               <div class="diff-arrow">→</div>
-              <div class="diff-good">La complejidad mínima necesaria</div>
+              <div class="diff-good" data-i18n="diferenciador.row2_good">La complejidad mínima necesaria</div>
             </div>
             <div class="diff-row">
-              <div class="diff-bad">Estimaciones de meses</div>
+              <div class="diff-bad" data-i18n="diferenciador.row3_bad">Estimaciones de meses</div>
               <div class="diff-arrow">→</div>
-              <div class="diff-good">Entrega iterativa desde semana 1</div>
+              <div class="diff-good" data-i18n="diferenciador.row3_good">Entrega iterativa desde semana 1</div>
             </div>
             <div class="diff-row">
-              <div class="diff-bad">Código que no puedes mantener</div>
+              <div class="diff-bad" data-i18n="diferenciador.row4_bad">Código que no puedes mantener</div>
               <div class="diff-arrow">→</div>
-              <div class="diff-good">Código documentado que tu equipo entiende</div>
+              <div class="diff-good" data-i18n="diferenciador.row4_good">Código documentado que tu equipo entiende</div>
             </div>
           </div>
         </div>
         <div class="fade-up" style="transition-delay:0.15s">
           <div class="diff-quote">
-            <p>"No vendemos páginas web genéricas. Construimos herramientas que resuelven problemas reales."</p>
-            <span>Soluciones simples &gt; arquitecturas innecesarias</span>
+            <p data-i18n="diferenciador.quote">"No vendemos páginas web genéricas. Construimos herramientas que resuelven problemas reales."</p>
+            <span data-i18n-html="diferenciador.quote_span">Soluciones simples &gt; arquitecturas innecesarias</span>
           </div>
           <div class="diff-stack-card">
-            <p class="diff-stack-title">STACK PROBADO EN PRODUCCIÓN</p>
+            <p class="diff-stack-title" data-i18n="diferenciador.stack_title">STACK PROBADO EN PRODUCCIÓN</p>
             <div class="diff-stack-tags">
               <span class="diff-stack-badge">PHP / Laravel</span>
               <span class="diff-stack-badge">Livewire</span>
@@ -613,34 +633,34 @@
   <section id="proceso" data-track-section="proceso" data-section-name="Proceso" data-funnel-stage="decision">
     <div class="container">
       <div class="fade-up" style="text-align:center;max-width:580px;margin:0 auto 48px;">
-        <div class="tag">Cómo trabajamos</div>
-        <h2 class="section-title">Sin metodologías de 200 páginas.</h2>
-        <p class="section-sub" style="margin:0 auto;">Proceso directo, enfocado en entregar valor desde el primer
+        <div class="tag" data-i18n="proceso.tag">Cómo trabajamos</div>
+        <h2 class="section-title" data-i18n="proceso.title">Sin metodologías de 200 páginas.</h2>
+        <p class="section-sub" style="margin:0 auto;" data-i18n="proceso.sub">Proceso directo, enfocado en entregar valor desde el primer
           sprint.</p>
       </div>
       <div class="steps fade-up" style="transition-delay:0.1s">
         <div class="step" id="step-1">
           <div class="step-circle">01</div>
-          <div class="step-title">Analiza el problema</div>
-          <p class="step-desc">Entendemos tu operación actual. Identificamos el dolor real, no el síntoma. Sin
+          <div class="step-title" data-i18n="proceso.s1_title">Analiza el problema</div>
+          <p class="step-desc" data-i18n="proceso.s1_desc">Entendemos tu operación actual. Identificamos el dolor real, no el síntoma. Sin
             suposiciones.</p>
         </div>
         <div class="step" id="step-2">
           <div class="step-circle">02</div>
-          <div class="step-title">Diseña la solución</div>
-          <p class="step-desc">Proponemos la arquitectura mínima necesaria. Sin sobreingeniería. Enfocada en tu caso
+          <div class="step-title" data-i18n="proceso.s2_title">Diseña la solución</div>
+          <p class="step-desc" data-i18n="proceso.s2_desc">Proponemos la arquitectura mínima necesaria. Sin sobreingeniería. Enfocada en tu caso
             concreto.</p>
         </div>
         <div class="step" id="step-3">
           <div class="step-circle">03</div>
-          <div class="step-title">Construye rápido</div>
-          <p class="step-desc">Entregas iterativas. Algo funcional en tus manos en días, no meses. Feedback real desde
+          <div class="step-title" data-i18n="proceso.s3_title">Construye rápido</div>
+          <p class="step-desc" data-i18n="proceso.s3_desc">Entregas iterativas. Algo funcional en tus manos en días, no meses. Feedback real desde
             el inicio.</p>
         </div>
         <div class="step" id="step-4">
           <div class="step-circle">04</div>
-          <div class="step-title">Itera con datos</div>
-          <p class="step-desc">Ajustamos con base en uso real, no en suposiciones de sala de reuniones. El producto
+          <div class="step-title" data-i18n="proceso.s4_title">Itera con datos</div>
+          <p class="step-desc" data-i18n="proceso.s4_desc">Ajustamos con base en uso real, no en suposiciones de sala de reuniones. El producto
             mejora con la operación.</p>
         </div>
       </div>
@@ -653,8 +673,8 @@
   <section id="cta" data-track-section="cta" data-section-name="CTA final" data-funnel-stage="decision">
     <div class="container">
       <div class="cta-box fade-up">
-        <h2 class="cta-headline">Tu negocio no necesita más trabajo.<br>Necesita mejores sistemas.</h2>
-        <p class="cta-sub">Una conversación de 30 minutos puede identificar dónde estás perdiendo tiempo y dinero hoy.
+        <h2 class="cta-headline" data-i18n-html="cta.title_html">Tu negocio no necesita más trabajo.<br>Necesita mejores sistemas.</h2>
+        <p class="cta-sub" data-i18n="cta.sub">Una conversación de 30 minutos puede identificar dónde estás perdiendo tiempo y dinero hoy.
         </p>
         <div class="cta-actions">
           <a href="https://wa.me/50764879448" class="btn btn-primary" id="btn-final-wa" target="_blank" rel="noopener"
@@ -663,10 +683,10 @@
             <svg class="btn-icon">
               <use href="#icon-whatsapp"></use>
             </svg>
-            Hablemos por WhatsApp
+            <span data-i18n="cta.btn">Hablemos por WhatsApp</span>
           </a>
         </div>
-        <p class="cta-note">Sin compromiso. Sin pitch de ventas genérico. Solo una conversación técnica sobre tu
+        <p class="cta-note" data-i18n="cta.note">Sin compromiso. Sin pitch de ventas genérico. Solo una conversación técnica sobre tu
           operación.</p>
       </div>
     </div>
@@ -681,18 +701,20 @@
         </svg>
         <span>nandoc<span>.</span>dev</span>
       </a>
-      <span class="footer-copy">Automatización &amp; Desarrollo Web a Medida · Panamá</span>
+      <span class="footer-copy" data-i18n-html="footer.copy">Automatización &amp; Desarrollo Web a Medida · Panamá</span>
     </div>
   </footer>
 
   <!-- ── WhatsApp Float ─────────────────────────────────── -->
   <a href="https://wa.me/50764879448" class="wa-float" id="btn-float-wa" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp"
+    data-i18n-attr="aria-label:float_wa.aria_label"
     data-whatsapp-link data-track="cta" data-location="whatsapp_float" data-channel="whatsapp" data-intent="contact">
     <svg>
       <use href="#icon-whatsapp"></use>
     </svg>
   </a>
 
+  <script src="assets/js/translations.js"></script>
   <script src="assets/js/script.js"></script>
 
 </body>

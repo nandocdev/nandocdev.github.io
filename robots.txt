@@ -1,0 +1,20 @@
+User-agent: *
+Allow: /
+
+# Directives for AI Search & LLM Engines
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://nandocdev.github.io/sitemap.xml

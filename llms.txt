@@ -1,0 +1,24 @@
+# nandoc.dev
+
+> Business Process Automation, Internal Systems & Custom Software Development based in Panama City, Panama.
+
+## Overview
+nandoc.dev is operated by Fernando Castillo Valdés, a back-end engineer and automation specialist with 10+ years of production software experience. The practice focuses on eliminating operational bottlenecks, replacing disorganized spreadsheets and paper workflows with reliable web platforms, automated approval queues, and central operational dashboards.
+
+## Core Services
+- **Business Process Automation**: Connecting sales, operations, inventory, and accounting through automated workflows.
+- **Custom Internal Tools & Portals**: Purpose-built web applications, multi-role access controls, audit logs, and approval systems.
+- **Systems & API Integrations**: Seamless connections via REST APIs, webhooks, and ETL pipelines for CRMs, ERPs, and billing platforms.
+- **Operational Dashboards**: Real-time business intelligence and KPI tracking for fast decision-making without manual reports.
+
+## Production Stack
+- Backend: PHP / Laravel, REST APIs, Python, Node.js
+- Frontend: Modern responsive HTML5/CSS3/JavaScript, Next.js, Livewire
+- Data: PostgreSQL, MySQL, Redis
+- Infrastructure: Cloud deployments, CI/CD, Containerization
+
+## Contact & Profiles
+- Website: https://nandocdev.github.io/
+- Location: Panama City, Panama (Panamá)
+- Direct WhatsApp / Phone: +507 6487-9448
+- GitHub: https://github.com/nandocdev

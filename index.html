@@ -10,6 +10,9 @@
   <meta name="keywords"
     content="automatización de procesos, desarrollo web a medida, software empresarial, integración de sistemas, dashboards, digitalización" />
   <link rel="canonical" href="https://nandocdev.github.io/" />
+  <link rel="alternate" hreflang="es" href="https://nandocdev.github.io/" />
+  <link rel="alternate" hreflang="en" href="https://nandocdev.github.io/" />
+  <link rel="alternate" hreflang="x-default" href="https://nandocdev.github.io/" />
   <meta property="og:title" content="Automatización de procesos y software a medida" />
   <meta property="og:description"
     content="Sistemas internos, integraciones y flujos automatizados para reducir errores y dar visibilidad real a tu operación." />
@@ -89,12 +92,22 @@
           "@id": "https://nandocdev.github.io/#business",
           "name": "nandoc.dev",
           "url": "https://nandocdev.github.io/",
+          "telephone": "+50764879448",
           "image": "https://nandocdev.github.io/assets/img/og-image.png",
           "description": "Automatización de procesos, sistemas internos e integraciones para operaciones que necesitan menos errores y más visibilidad.",
+          "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Ciudad de Panamá",
+            "addressRegion": "Panamá",
+            "addressCountry": "PA"
+          },
           "areaServed": {
             "@type": "Country",
             "name": "Panamá"
           },
+          "sameAs": [
+            "https://github.com/nandocdev"
+          ],
           "serviceType": [
             "Automatización de procesos",
             "Desarrollo de software a medida",
@@ -111,7 +124,11 @@
           "@id": "https://nandocdev.github.io/#person",
           "name": "Fernando Castillo",
           "url": "https://nandocdev.github.io/",
+          "telephone": "+50764879448",
           "jobTitle": "Back-end Engineer & Automation Specialist",
+          "sameAs": [
+            "https://github.com/nandocdev"
+          ],
           "worksFor": {
             "@id": "https://nandocdev.github.io/#business"
           }
@@ -131,7 +148,7 @@
 <body>
 
   <!-- SVG Sprite -->
-  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <svg xmlns="http://www.w3.org/2000/svg" class="svg-sprite-hidden">
     <symbol id="icon-whatsapp" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
       stroke-linecap="round" stroke-linejoin="round">
       <path
@@ -353,12 +370,12 @@
         <p class="section-sub" data-i18n="problema.sub">Cada proceso manual que no has digitalizado es tiempo perdido, un error esperando pasar,
           y un cuello de botella que no va a desaparecer solo.</p>
       </div>
-      <div class="pain-grid fade-up" style="transition-delay:0.1s">
+      <div class="pain-grid fade-up delay-1">
         <div class="pain-card" id="pain-excel">
           <div class="pain-icon"><svg>
               <use href="#icon-database"></use>
             </svg></div>
-          <div class="pain-title" data-i18n="problema.card_1_title">¿Usas Excel, papel o WhatsApp desordenado?</div>
+          <h3 class="pain-title" data-i18n="problema.card_1_title">¿Usas Excel, papel o WhatsApp desordenado?</h3>
           <p class="pain-desc" data-i18n="problema.card_1_desc">Tus datos viven en silos. Nadie tiene la versión correcta. Las decisiones se toman con
             información desactualizada o incompleta.</p>
         </div>
@@ -366,7 +383,7 @@
           <div class="pain-icon"><svg>
               <use href="#icon-repeat"></use>
             </svg></div>
-          <div class="pain-title" data-i18n="problema.card_2_title">Procesos manuales que no escalan</div>
+          <h3 class="pain-title" data-i18n="problema.card_2_title">Procesos manuales que no escalan</h3>
           <p class="pain-desc" data-i18n="problema.card_2_desc">Para crecer, contratas más personas que hacen lo mismo. El costo operativo sube, la
             calidad no. Eso no es crecimiento, es inflación de personal.</p>
         </div>
@@ -374,7 +391,7 @@
           <div class="pain-icon"><svg>
               <use href="#icon-alert"></use>
             </svg></div>
-          <div class="pain-title" data-i18n="problema.card_3_title">Errores humanos constantes</div>
+          <h3 class="pain-title" data-i18n="problema.card_3_title">Errores humanos constantes</h3>
           <p class="pain-desc" data-i18n="problema.card_3_desc">Datos duplicados, registros perdidos, cálculos incorrectos. Cada error manual tiene un
             costo real: tiempo de corrección, pérdida de confianza, fricción con clientes.</p>
         </div>
@@ -382,12 +399,12 @@
           <div class="pain-icon"><svg>
               <use href="#icon-activity"></use>
             </svg></div>
-          <div class="pain-title" data-i18n="problema.card_4_title">Falta de visibilidad en tiempo real</div>
+          <h3 class="pain-title" data-i18n="problema.card_4_title">Falta de visibilidad en tiempo real</h3>
           <p class="pain-desc" data-i18n="problema.card_4_desc">Tomas decisiones a ciegas. No sabes qué está pasando ahora en tu operación. Los reportes
             llegan tarde, cuando ya no sirven para reaccionar.</p>
         </div>
       </div>
-      <div class="pain-footer fade-up" style="transition-delay:0.2s">
+      <div class="pain-footer fade-up delay-2">
         <p data-i18n-html="problema.footer_html">Eso no escala. <span>Eso te frena.</span></p>
       </div>
     </div>
@@ -404,12 +421,12 @@
         <p class="section-sub" data-i18n="solucion.sub">Sin buzzwords. Sin arquitecturas de NASA para un problema simple. Software que hace lo
           que necesita hacer, rápido y confiable.</p>
       </div>
-      <div class="sol-grid fade-up" style="transition-delay:0.1s">
+      <div class="sol-grid fade-up delay-1">
         <div class="sol-card" id="sol-automation">
           <div class="sol-icon"><svg>
               <use href="#icon-bot"></use>
             </svg></div>
-          <div class="sol-title" data-i18n="solucion.card_1_title">Automatización de tareas repetitivas</div>
+          <h3 class="sol-title" data-i18n="solucion.card_1_title">Automatización de tareas repetitivas</h3>
           <p class="sol-desc" data-i18n="solucion.card_1_desc">Identifica los procesos que tu equipo hace igual todos los días y los convertimos en
             flujos automáticos. El sistema trabaja, tu equipo piensa.</p>
         </div>
@@ -417,7 +434,7 @@
           <div class="sol-icon"><svg>
               <use href="#icon-smartphone"></use>
             </svg></div>
-          <div class="sol-title" data-i18n="solucion.card_2_title">Digitalización de procesos operativos</div>
+          <h3 class="sol-title" data-i18n="solucion.card_2_title">Digitalización de procesos operativos</h3>
           <p class="sol-desc" data-i18n="solucion.card_2_desc">Formularios en papel, registros en WhatsApp, hojas de cálculo compartidas — todo migra a
             un sistema centralizado, con historial, permisos y auditoría.</p>
         </div>
@@ -425,7 +442,7 @@
           <div class="sol-icon"><svg>
               <use href="#icon-layers"></use>
             </svg></div>
-          <div class="sol-title" data-i18n="solucion.card_3_title">Centralización de información</div>
+          <h3 class="sol-title" data-i18n="solucion.card_3_title">Centralización de información</h3>
           <p class="sol-desc" data-i18n="solucion.card_3_desc">Una sola fuente de verdad para toda tu operación. Todos ven lo mismo, en tiempo real, con
             los permisos correctos.</p>
         </div>
@@ -433,7 +450,7 @@
           <div class="sol-icon"><svg>
               <use href="#icon-zap"></use>
             </svg></div>
-          <div class="sol-title" data-i18n="solucion.card_4_title">Integraciones con sistemas existentes</div>
+          <h3 class="sol-title" data-i18n="solucion.card_4_title">Integraciones con sistemas existentes</h3>
           <p class="sol-desc" data-i18n="solucion.card_4_desc">No tiramos lo que ya funciona. Conectamos tus herramientas actuales vía API: tu CRM,
             sistema contable, plataformas de pago, notificaciones.</p>
         </div>
@@ -451,11 +468,11 @@
         <h2 class="section-title" data-i18n="beneficios.title">Lo que gana tu empresa.</h2>
         <p class="section-sub" data-i18n="beneficios.sub">No hablamos de features. Hablamos de resultados operativos medibles.</p>
       </div>
-      <div class="benefits-list fade-up" style="transition-delay:0.1s">
+      <div class="benefits-list fade-up delay-1">
         <div class="benefit-row" id="benefit-1">
           <span class="benefit-num">01</span>
           <div class="benefit-text">
-            <span class="benefit-title" data-i18n="beneficios.b1_title">Ahorro de tiempo operativo</span>
+            <h3 class="benefit-title" data-i18n="beneficios.b1_title">Ahorro de tiempo operativo</h3>
             <span class="benefit-sub" data-i18n="beneficios.b1_sub">Eliminas horas de trabajo manual repetitivo. Tu equipo se enfoca en lo que agrega
               valor.</span>
           </div>
@@ -464,7 +481,7 @@
         <div class="benefit-row" id="benefit-2">
           <span class="benefit-num">02</span>
           <div class="benefit-text">
-            <span class="benefit-title" data-i18n="beneficios.b2_title">Reducción de errores</span>
+            <h3 class="benefit-title" data-i18n="beneficios.b2_title">Reducción de errores</h3>
             <span class="benefit-sub" data-i18n="beneficios.b2_sub">Validaciones automáticas, flujos controlados. Los errores humanos se reducen a la
               mínima expresión.</span>
           </div>
@@ -473,7 +490,7 @@
         <div class="benefit-row" id="benefit-3">
           <span class="benefit-num">03</span>
           <div class="benefit-text">
-            <span class="benefit-title" data-i18n="beneficios.b3_title">Mejores decisiones con datos reales</span>
+            <h3 class="benefit-title" data-i18n="beneficios.b3_title">Mejores decisiones con datos reales</h3>
             <span class="benefit-sub" data-i18n="beneficios.b3_sub">Dashboards en tiempo real. Ves lo que importa, cuando importa, sin esperar
               reportes.</span>
           </div>
@@ -482,7 +499,7 @@
         <div class="benefit-row" id="benefit-4">
           <span class="benefit-num">04</span>
           <div class="benefit-text">
-            <span class="benefit-title" data-i18n="beneficios.b4_title">Escalabilidad sin contratar más personal</span>
+            <h3 class="benefit-title" data-i18n="beneficios.b4_title">Escalabilidad sin contratar más personal</h3>
             <span class="benefit-sub" data-i18n="beneficios.b4_sub">Duplicas el volumen de operaciones sin duplicar el equipo. El sistema absorbe el
               crecimiento.</span>
           </div>
@@ -503,10 +520,10 @@
         <p class="section-sub" data-i18n="casos.sub">Ejemplos concretos, no genéricos. Proyectos que ya existen o que puedo construir para ti.
         </p>
       </div>
-      <div class="cases-grid fade-up" style="transition-delay:0.1s">
+      <div class="cases-grid fade-up delay-1">
         <div class="case-card" id="case-1">
           <div class="case-num">001</div>
-          <div class="case-title" data-i18n="casos.c1_title">Cotización → aprobación → orden de trabajo</div>
+          <h3 class="case-title" data-i18n="casos.c1_title">Cotización → aprobación → orden de trabajo</h3>
           <p class="case-desc" data-i18n="casos.c1_desc">Un flujo completo para ventas y operaciones: cotizas, apruebas, asignas responsables y
             dejas trazabilidad sin perseguir versiones por chat o correo.</p>
           <div class="case-tags">
@@ -517,7 +534,7 @@
         </div>
         <div class="case-card" id="case-2">
           <div class="case-num">002</div>
-          <div class="case-title" data-i18n="casos.c2_title">Asistencia, turnos y novedades de campo</div>
+          <h3 class="case-title" data-i18n="casos.c2_title">Asistencia, turnos y novedades de campo</h3>
           <p class="case-desc" data-i18n="casos.c2_desc">Registro digital de entrada y salida, cambios de turno, incidencias y alertas para
             supervisores. Todo queda centralizado y listo para reportar.</p>
           <div class="case-tags">
@@ -528,7 +545,7 @@
         </div>
         <div class="case-card" id="case-3">
           <div class="case-num">003</div>
-          <div class="case-title" data-i18n="casos.c3_title">Panel operativo para pedidos y despacho</div>
+          <h3 class="case-title" data-i18n="casos.c3_title">Panel operativo para pedidos y despacho</h3>
           <p class="case-desc" data-i18n="casos.c3_desc">Pedidos, stock, despacho y entregas visibles en un solo panel para que operaciones,
             soporte y gerencia vean lo mismo sin pedir reportes manuales.</p>
           <div class="case-tags">
@@ -539,7 +556,7 @@
         </div>
         <div class="case-card" id="case-4">
           <div class="case-num">004</div>
-          <div class="case-title" data-i18n="casos.c4_title">Aprobaciones internas sin cuellos de botella</div>
+          <h3 class="case-title" data-i18n="casos.c4_title">Aprobaciones internas sin cuellos de botella</h3>
           <p class="case-desc" data-i18n="casos.c4_desc">Solicitudes de compra, vacaciones, descuentos o excepciones con reglas claras, trazabilidad
             y recordatorios automáticos hasta cerrar cada caso.</p>
           <div class="case-tags">
@@ -550,7 +567,7 @@
         </div>
         <div class="case-card" id="case-5">
           <div class="case-num">005</div>
-          <div class="case-title" data-i18n="casos.c5_title">Integración entre ventas, facturación y bodega</div>
+          <h3 class="case-title" data-i18n="casos.c5_title">Integración entre ventas, facturación y bodega</h3>
           <p class="case-desc" data-i18n="casos.c5_desc">Conecta formularios, e-commerce, CRM, ERP o facturación para evitar doble digitación,
             errores de inventario y retrasos entre equipos.</p>
           <div class="case-tags">
@@ -561,7 +578,7 @@
         </div>
         <div class="case-card" id="case-6">
           <div class="case-num">006</div>
-          <div class="case-title" data-i18n="casos.c6_title">Portal para clientes con historial y autoservicio</div>
+          <h3 class="case-title" data-i18n="casos.c6_title">Portal para clientes con historial y autoservicio</h3>
           <p class="case-desc" data-i18n="casos.c6_desc">Un espacio donde tus clientes consultan estados, descargan documentos, crean solicitudes y
             reciben actualizaciones sin depender de seguimiento manual.</p>
           <div class="case-tags">
@@ -606,7 +623,7 @@
             </div>
           </div>
         </div>
-        <div class="fade-up" style="transition-delay:0.15s">
+        <div class="fade-up delay-15">
           <div class="diff-quote">
             <p data-i18n="diferenciador.quote">"No vendemos páginas web genéricas. Construimos herramientas que resuelven problemas reales."</p>
             <span data-i18n-html="diferenciador.quote_span">Soluciones simples &gt; arquitecturas innecesarias</span>
@@ -632,34 +649,34 @@
   <!-- ── Proceso ───────────────────────────────────────── -->
   <section id="proceso" data-track-section="proceso" data-section-name="Proceso" data-funnel-stage="decision">
     <div class="container">
-      <div class="fade-up" style="text-align:center;max-width:580px;margin:0 auto 48px;">
+      <div class="fade-up proceso-header">
         <div class="tag" data-i18n="proceso.tag">Cómo trabajamos</div>
         <h2 class="section-title" data-i18n="proceso.title">Sin metodologías de 200 páginas.</h2>
-        <p class="section-sub" style="margin:0 auto;" data-i18n="proceso.sub">Proceso directo, enfocado en entregar valor desde el primer
+        <p class="section-sub section-sub-center" data-i18n="proceso.sub">Proceso directo, enfocado en entregar valor desde el primer
           sprint.</p>
       </div>
-      <div class="steps fade-up" style="transition-delay:0.1s">
+      <div class="steps fade-up delay-1">
         <div class="step" id="step-1">
           <div class="step-circle">01</div>
-          <div class="step-title" data-i18n="proceso.s1_title">Analiza el problema</div>
+          <h3 class="step-title" data-i18n="proceso.s1_title">Analiza el problema</h3>
           <p class="step-desc" data-i18n="proceso.s1_desc">Entendemos tu operación actual. Identificamos el dolor real, no el síntoma. Sin
             suposiciones.</p>
         </div>
         <div class="step" id="step-2">
           <div class="step-circle">02</div>
-          <div class="step-title" data-i18n="proceso.s2_title">Diseña la solución</div>
+          <h3 class="step-title" data-i18n="proceso.s2_title">Diseña la solución</h3>
           <p class="step-desc" data-i18n="proceso.s2_desc">Proponemos la arquitectura mínima necesaria. Sin sobreingeniería. Enfocada en tu caso
             concreto.</p>
         </div>
         <div class="step" id="step-3">
           <div class="step-circle">03</div>
-          <div class="step-title" data-i18n="proceso.s3_title">Construye rápido</div>
+          <h3 class="step-title" data-i18n="proceso.s3_title">Construye rápido</h3>
           <p class="step-desc" data-i18n="proceso.s3_desc">Entregas iterativas. Algo funcional en tus manos en días, no meses. Feedback real desde
             el inicio.</p>
         </div>
         <div class="step" id="step-4">
           <div class="step-circle">04</div>
-          <div class="step-title" data-i18n="proceso.s4_title">Itera con datos</div>
+          <h3 class="step-title" data-i18n="proceso.s4_title">Itera con datos</h3>
           <p class="step-desc" data-i18n="proceso.s4_desc">Ajustamos con base en uso real, no en suposiciones de sala de reuniones. El producto
             mejora con la operación.</p>
         </div>
@@ -677,8 +694,8 @@
         <p class="cta-sub" data-i18n="cta.sub">Una conversación de 30 minutos puede identificar dónde estás perdiendo tiempo y dinero hoy.
         </p>
         <div class="cta-actions">
-          <a href="https://wa.me/50764879448" class="btn btn-primary" id="btn-final-wa" target="_blank" rel="noopener"
-            style="padding:16px 32px;font-size:16px;" data-whatsapp-link data-track="cta" data-location="cta_final"
+          <a href="https://wa.me/50764879448" class="btn btn-primary btn-cta-large" id="btn-final-wa" target="_blank" rel="noopener"
+            data-whatsapp-link data-track="cta" data-location="cta_final"
             data-channel="whatsapp" data-intent="contact">
             <svg class="btn-icon">
               <use href="#icon-whatsapp"></use>
@@ -702,6 +719,15 @@
         <span>nandoc<span>.</span>dev</span>
       </a>
       <span class="footer-copy" data-i18n-html="footer.copy">Automatización &amp; Desarrollo Web a Medida · Panamá</span>
+      <address class="footer-contact">
+        <a href="tel:+50764879448" class="footer-contact-link" aria-label="Teléfono directo">+507 6487-9448</a>
+        <span class="footer-sep">·</span>
+        <span data-i18n="footer.location">Ciudad de Panamá, Panamá</span>
+        <span class="footer-sep">·</span>
+        <a href="https://github.com/nandocdev" class="footer-social-link" target="_blank" rel="noopener me" aria-label="GitHub perfil">
+          GitHub
+        </a>
+      </address>
     </div>
   </footer>
 
@@ -714,8 +740,8 @@
     </svg>
   </a>
 
-  <script src="assets/js/translations.js"></script>
-  <script src="assets/js/script.js"></script>
+  <script defer src="assets/js/translations.js"></script>
+  <script defer src="assets/js/script.js"></script>
 
 </body>
 

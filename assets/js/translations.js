@@ -170,18 +170,20 @@ const translations = {
       note: "Sin compromiso. Sin pitch de ventas genérico. Solo una conversación técnica sobre tu operación."
     },
     footer: {
-      copy: "Automatización & Desarrollo Web a Medida · Panamá"
+      copy: "Automatización & Desarrollo Web a Medida · Panamá",
+      location: "Ciudad de Panamá, Panamá",
+      phone: "+507 6487-9448"
     }
   },
   en: {
     meta: {
-      title: "Process Automation & Custom Software | nandoc.dev",
+      title: "Business Process Automation & Custom Software | nandoc.dev",
       description: "Process automation and custom software for business operations that need less rework, better traceability, and real visibility.",
       keywords: "process automation, custom software development, business software, systems integration, dashboards, operational digitization",
-      og_title: "Process Automation & Custom Software",
+      og_title: "Business Process Automation & Custom Software",
       og_description: "Internal systems, integrations, and automated workflows to reduce errors and give your operation real visibility.",
       og_locale: "en_US",
-      twitter_title: "Process Automation & Custom Software",
+      twitter_title: "Business Process Automation & Custom Software",
       twitter_description: "Automate critical processes, centralize information, and eliminate rework with systems built for your operation."
     },
     whatsapp: {
@@ -340,7 +342,9 @@ const translations = {
       note: "No commitment. No pushy sales pitch. Just a pragmatic technical discussion about your operation."
     },
     footer: {
-      copy: "Custom Automation & Web Development · Panama"
+      copy: "Custom Automation & Web Development · Panama",
+      location: "Panama City, Panama",
+      phone: "+507 6487-9448"
     }
   }
 };
